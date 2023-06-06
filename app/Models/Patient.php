@@ -11,8 +11,8 @@ class Patient extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['first_name', 'last_name', 'address', 'birthdate', 'gender', 
-    'phone', 'blood_type', 'email', 'username', 'password'];
+    protected $fillable = ['role_id','first_name', 'last_name', 'address', 'birthdate', 'gender', 
+    'phone', 'insurance', 'blood_type', 'email', 'username', 'password'];
 
 public function role() : ?BelongsTo{
 return $this->belongsTo(Role::class,'role_id');

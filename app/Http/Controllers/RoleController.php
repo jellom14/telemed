@@ -10,7 +10,7 @@ class RoleController extends Controller
 {
     //for testing purposes only
 
-    public function store(Request $request){ //CREATE ROLE
+    public function post(Request $request){ //CREATE ROLE
         $validated=$request->validate([
             'name'=>'required|max:20',
         ]);
@@ -21,7 +21,7 @@ class RoleController extends Controller
         return response()->json($role,Response::HTTP_OK);
     }
 
-    public function update($id,Request $request){ //UPDATE ROLE
+    public function put($id,Request $request){ //UPDATE ROLE
         $validated=$request->validate([
             'name'=>'required|max:20',
         ]);
@@ -33,13 +33,13 @@ class RoleController extends Controller
 
     }
 
-    public function show($id){ //SHOW ROLE
+    public function get($id){ //READ ROLE
         $role=Role::find($id);
 
         return response()->json($role,Response::HTTP_OK);
     }
 
-    public function destroy($id){ //DELETE ROLE
+    public function delete($id){ //DELETE ROLE
         $role=Role::find($id);
         $role->delete();
 

@@ -11,7 +11,7 @@ class Staff extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['first_name', 'last_name', 'address', 'birthdate', 'gender', 
+    protected $fillable = ['role_id', 'first_name', 'last_name', 'address', 'birthdate', 'gender', 
                             'phone', 'email', 'username', 'password'];
 
     public function role() : ?BelongsTo{
