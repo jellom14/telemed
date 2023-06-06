@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     RoleController,
     StaffController,
-    PatientController
+    PatientController,
+    ServiceController,
+    ModeController
 };
 
 /*
@@ -48,4 +50,22 @@ Route::prefix('patient')->group(function(){
     Route::delete('{id}/delete', [PatientController::class, 'delete']);
 
     Route::get('/', [PatientController::class, 'index']);
+});
+
+Route::prefix('service')->group(function(){
+    Route::post('post', [ServiceController::class, 'post']);
+    Route::put('{id}/put', [ServiceController::class, 'put']);
+    Route::get('{id}/get', [ServiceController::class, 'get']);
+    Route::delete('{id}/delete', [ServiceController::class, 'delete']);
+
+    Route::get('/', [ServiceController::class, 'index']);
+});
+
+Route::prefix('mode')->group(function(){
+    Route::post('post', [ModeController::class, 'post']);
+    Route::put('{id}/put', [ModeController::class, 'put']);
+    Route::get('{id}/get', [ModeController::class, 'get']);
+    Route::delete('{id}/delete', [ModeController::class, 'delete']);
+
+    Route::get('/', [ModeController::class, 'index']);
 });

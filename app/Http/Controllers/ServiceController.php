@@ -10,7 +10,7 @@ class ServiceController extends Controller
 {
    //for testing purposes only
 
-   public function post(Request $request){ //CREATE ROLE
+   public function post(Request $request){ //CREATE SERVICE
     $validated=$request->validate([
         'name'=>'required|max:20',
     ]);
@@ -21,7 +21,7 @@ class ServiceController extends Controller
     return response()->json($service,Response::HTTP_OK);
 }
 
-public function put($id,Request $request){ //UPDATE ROLE
+public function put($id,Request $request){ //UPDATE SERVICE
     $validated=$request->validate([
         'name'=>'required|max:20',
     ]);
@@ -33,20 +33,20 @@ public function put($id,Request $request){ //UPDATE ROLE
 
 }
 
-public function get($id){ //READ ROLE
+public function get($id){ //READ SERVICE
     $service=Service::find($id);
 
     return response()->json($service,Response::HTTP_OK);
 }
 
-public function delete($id){ //DELETE ROLE
+public function delete($id){ //DELETE SERVICE
     $service=Service::find($id);
     $service->delete();
 
     return response()->json($service,Response::HTTP_OK);
 }
 
-public function index(Request $request){ //SEARCH ROLE
+public function index(Request $request){ //SEARCH SERVICE
     
     $pageSize = $request->page_size ?? 20;
 
@@ -57,4 +57,5 @@ public function index(Request $request){ //SEARCH ROLE
      return  response()->json($service, Response::HTTP_OK);
     
 }
+
 }
