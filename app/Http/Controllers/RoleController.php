@@ -12,7 +12,7 @@ class RoleController extends Controller
 
     public function post(Request $request){ //CREATE ROLE
         $validated=$request->validate([
-            'name'=>'required|max:20',
+            'name'=>'required|max:20'
         ]);
 
         $role=new Role($validated);
@@ -23,7 +23,7 @@ class RoleController extends Controller
 
     public function put($id,Request $request){ //UPDATE ROLE
         $validated=$request->validate([
-            'name'=>'required|max:20',
+            'name'=>'required|max:20'
         ]);
         
         $role=Role::find($id);

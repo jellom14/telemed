@@ -12,7 +12,7 @@ class ModeController extends Controller
 
    public function post(Request $request){ //CREATE MODE
     $validated=$request->validate([
-        'name'=>'required|max:20',
+        'name'=>'required|max:20'
     ]);
 
     $mode=new Mode($validated);
@@ -23,7 +23,7 @@ class ModeController extends Controller
 
 public function put($id,Request $request){ //UPDATE MODE
     $validated=$request->validate([
-        'name'=>'required|max:20',
+        'name'=>'required|max:20'
     ]);
     
     $mode=Mode::find($id);

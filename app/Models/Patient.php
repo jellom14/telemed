@@ -23,4 +23,8 @@ public function appointment() : ?HasMany {
     return $this->hasMany(Appointment::class);
 }
 
+public function message() : ?HasMany {
+    return $this->hasMany(Message::class);
+}
+
 }

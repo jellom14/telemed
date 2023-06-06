@@ -12,7 +12,7 @@ class ServiceController extends Controller
 
    public function post(Request $request){ //CREATE SERVICE
     $validated=$request->validate([
-        'name'=>'required|max:20',
+        'name'=>'required|max:20'
     ]);
 
     $service=new Service($validated);
@@ -23,7 +23,7 @@ class ServiceController extends Controller
 
 public function put($id,Request $request){ //UPDATE SERVICE
     $validated=$request->validate([
-        'name'=>'required|max:20',
+        'name'=>'required|max:20'
     ]);
     
     $service=Service::find($id);

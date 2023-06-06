@@ -23,4 +23,7 @@ class Staff extends Model
         return $this->hasMany(Appointment::class);
     }
     
+    public function message() : ?HasMany {
+        return $this->hasMany(Message::class);
+    }
 }
