@@ -7,7 +7,8 @@ use App\Http\Controllers\{
     StaffController,
     PatientController,
     ServiceController,
-    ModeController
+    ModeController,
+    AppointmentController
 };
 
 /*
@@ -68,4 +69,13 @@ Route::prefix('mode')->group(function(){
     Route::delete('{id}/delete', [ModeController::class, 'delete']);
 
     Route::get('/', [ModeController::class, 'index']);
+});
+
+Route::prefix('appointment')->group(function(){
+    Route::post('post', [AppointmentController::class, 'post']);
+    Route::put('{id}/put', [AppointmentController::class, 'put']);
+    Route::get('{id}/get', [AppointmentController::class, 'get']);
+    Route::delete('{id}/delete', [AppointmentController::class, 'delete']);
+
+    Route::get('/', [AppointmentController::class, 'index']);
 });

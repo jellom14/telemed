@@ -42,6 +42,10 @@ return new class extends Migration
             $table->string('Q9');
             $table->string('Q10');
 
+            $table->string('price');
+            $table->string('receipt_no');
+
+
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
