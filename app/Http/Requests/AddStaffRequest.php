@@ -23,7 +23,7 @@ class AddStaffRequest extends FormRequest
     {
         return [
             'role_id'=>'required|max:20', 'first_name'=>'required|max:20', 
-            'last_name'=>'required|max:20', 'address'=>'required|max:100', 
+            'last_name'=>'required|max:20', 'address'=>'required|max:20', 
             'birthdate'=>'required|max:20', 'gender'=>'required|max:20', 
             'phone'=>'required|max:20', 'email'=>'required|max:50', 
             'username'=>'required|max:20', 'password'=>'required|max:20'
