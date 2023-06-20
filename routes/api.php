@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\{
     RoleController,
     StaffController,
@@ -22,6 +23,10 @@ use App\Http\Controllers\{
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+// Unprotected routes
+Route::post('/createAccount', [UserController::class, 'createAccount']);
+Route::post('/signIn', [UserController::class, 'signIn']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
