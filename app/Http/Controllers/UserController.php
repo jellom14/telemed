@@ -22,10 +22,17 @@ class UserController extends Controller
     {
         $data = $request->all();
         $rules = [
-            'name' => 'required|string|max:255',
             'userTypeId' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required',
+            'firstName' => 'required|string|max:255',
+            'lastName' => 'required|string|max:255',
+            'address' => 'required',
+            'dob' => 'required',
+            'bloodPressure' => 'required',
+            'bloodType' => 'required',
+            'gender' => 'required',
+            'phone' => 'required',            
         ];
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
@@ -34,10 +41,17 @@ class UserController extends Controller
         } else {
             try {
                 $user = new User;
-                $user->name = $request->name;
                 $user->userTypeId = $request->userTypeId;
                 $user->email = $request->email;
                 $user->password = Hash::make($request->password);
+                $user->firstName = $request->firstName;
+                $user->lastName = $request->lastName;
+                $user->address = $request->address;
+                $user->dob = $request->dob;
+                $user->bloodPressure = $request->bloodPressure;
+                $user->bloodType = $request->bloodType;
+                $user->gender = $request->gender;
+                $user->phone = $request->phone;
                 $user->saveOrFail();
                 return JSendResponse::success();
             } catch (Exception $exc) {
@@ -73,7 +87,6 @@ class UserController extends Controller
                 } else {
                     if (Hash::check($password, $user['password'])) {
                         $id = $user['id'];
-                        $userData['name'] = $user['name'];
                         $userData['email'] = $user['email'];
                         $userData['token'] = $user->createToken('auth_token')->plainTextToken;
                         //                        $userData['token'] = $user->createToken('auth_token')->plainTextToken;
