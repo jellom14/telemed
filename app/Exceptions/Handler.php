@@ -4,6 +4,9 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Auth\AuthenticationException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use JSend\JSendResponse;
 
 class Handler extends ExceptionHandler
 {
@@ -25,6 +28,18 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             //
+        });
+
+        $this->renderable(function (AuthenticationException $e, $request) {
+            if ($request->is('api/*')) {
+                $messages['message'] = 'Unauthenticated';
+                return JSendResponse::fail($messages);
+            }
+        });
+
+        $this->renderable(function (AccessDeniedHttpException $e, $request) {
+            $messages['message'] = 'Sorry. You do not have the authority to perform this action.';
+            return Response(JSendResponse::fail($messages));
         });
     }
 }
