@@ -10,8 +10,10 @@ use App\Http\Controllers\{
     ServiceController,
     ModeController,
     AppointmentController,
-    MessageController
+    MessageController,
+    CaderController
 };
+use JSend\JSendResponse;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,13 @@ use App\Http\Controllers\{
 // Unprotected routes
 Route::post('/createAccount', [UserController::class, 'createAccount']);
 Route::post('/signIn', [UserController::class, 'signIn']);
+
+// Protected routes
+Route::middleware('auth:sanctum')->group(function () {
+    // CADERS
+    Route::get('/caders', [CaderController::class, 'getCaders']);
+    
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -93,4 +102,9 @@ Route::prefix('message')->group(function(){
     Route::delete('{id}/delete', [MessageController::class, 'delete']);
 
     Route::get('/', [MessageController::class, 'index']);
+});
+
+Route::fallback(function () {
+    $messages['message'] = 'Sorry. You are unauthorised to access this page.';
+    return JSendResponse::fail($messages);
 });
