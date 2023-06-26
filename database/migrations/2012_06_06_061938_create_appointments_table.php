@@ -16,17 +16,17 @@ return new class extends Migration
             $table->id();
             $table->string('name');
 
-            $table->bigInteger("patient_id")->unsigned();
-            $table->foreign("patient_id")->references("id")->on("patients");
+            // $table->bigInteger("patient_id")->unsigned();
+            // $table->foreign("patient_id")->references("id")->on("patients");
 
-            $table->bigInteger("staff_id")->unsigned();
-            $table->foreign("staff_id")->references("id")->on("staff");
+            // $table->bigInteger("staff_id")->unsigned();
+            // $table->foreign("staff_id")->references("id")->on("staff");
 
-            $table->bigInteger("service_id")->unsigned();
-            $table->foreign("service_id")->references("id")->on("services");
+            // $table->bigInteger("service_id")->unsigned();
+            // $table->foreign("service_id")->references("id")->on("services");
 
-            $table->bigInteger("mode_id")->unsigned();
-            $table->foreign("mode_id")->references("id")->on("modes");
+            // $table->bigInteger("mode_id")->unsigned();
+            // $table->foreign("mode_id")->references("id")->on("modes");
 
             $table->date('date');
             $table->string('note');

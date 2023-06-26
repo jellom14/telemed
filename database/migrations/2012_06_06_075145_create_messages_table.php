@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->bigInteger("staff_id")->unsigned()->nullable();
-            $table->foreign("staff_id")->references("id")->on("staff");
+            // $table->bigInteger("staff_id")->unsigned()->nullable();
+            // $table->foreign("staff_id")->references("id")->on("staff");
             
-            $table->bigInteger("patient_id")->unsigned()->nullable();
-            $table->foreign("patient_id")->references("id")->on("patients");
+            // $table->bigInteger("patient_id")->unsigned()->nullable();
+            // $table->foreign("patient_id")->references("id")->on("patients");
 
             $table->string('message');
         });

@@ -19,7 +19,7 @@ class UsersSeeder extends Seeder
     public function run()
     {
         DB::table('users')->truncate();
-        // DOCTOR
+        // ADMIN
         $user = new User;
         $user->userTypeId = 1;
         $user->email = 'jello@gmail.com';
@@ -37,6 +37,7 @@ class UsersSeeder extends Seeder
         // DOCTOR
         $user = new User;
         $user->userTypeId = 2;
+        $user->cadersId = 3;
         $user->email = 'jona@gmail.com';
         $user->password = Hash::make('1234');
         $user->firstName = 'Jona';

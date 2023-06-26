@@ -18,7 +18,7 @@ class CadersSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('caders')->truncate();
+        // DB::table('caders')->truncate();
 
         $cader = new Cader;
         $cader->cader = 'Family Physicians';

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 use JSend\JSendResponse;
 use Exception;
@@ -32,7 +33,7 @@ class UserController extends Controller
             'bloodPressure' => 'required',
             'bloodType' => 'required',
             'gender' => 'required',
-            'phone' => 'required',            
+            'phone' => 'required',
         ];
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
@@ -101,6 +102,22 @@ class UserController extends Controller
                 Log::emergency($exc->getMessage());
                 return JSendResponse::error('Something went wrong. Please contact your project administrator for help explaining what you tried to do.');
             }
+        }
+    }
+
+    public function getDoctorsByCaderId(Request $request)
+    {
+        $caderId = $request->get('caderId');
+        $doctors = DB::table('users')
+            ->where('users.userTypeId', '=', 2)
+            ->where('users.cadersId', '=', $caderId)
+            ->get()
+            ->all();
+        if (count($doctors) > 0) {
+            return JsendResponse::success($doctors);
+        } else {
+            $messages['message'] = 'No records found.';
+            return JSendResponse::fail($messages);
         }
     }
 }
