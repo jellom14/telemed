@@ -44,10 +44,15 @@ class UsersSeeder extends Seeder
         $user->lastName = 'Quirimit';
         $user->address = 'PH';
         $user->dob = '01/01/2023';
-        $user->bloodPressure = '90';
-        $user->bloodType = 'O+';
+
         $user->gender = 'female';
         $user->phone = '1234567890';
+
+        $user->school = 'Mapua University';
+        $user->certification = true;
+        $user->specialty = 'Gaming';
+        $user->registrationNo = '095612345';
+        $user->medlicense = '0000011111';
         $user->save();
 
         $user = new User;
@@ -59,10 +64,15 @@ class UsersSeeder extends Seeder
         $user->lastName = 'Enciso';
         $user->address = 'PH';
         $user->dob = '01/27/1965';
-        $user->bloodPressure = '70';
-        $user->bloodType = 'A+';
+
         $user->gender = 'Female';
         $user->phone = '1234567890';
+
+        $user->school = 'Adamson University';
+        $user->certification = true;
+        $user->specialty = 'Sleeping';
+        $user->registrationNo = '12345';
+        $user->medlicense = '1111100000';
         $user->save();
 
         $user = new User;
@@ -74,10 +84,15 @@ class UsersSeeder extends Seeder
         $user->lastName = 'Morales';
         $user->address = 'PH';
         $user->dob = '06/27/1970';
-        $user->bloodPressure = '70';
-        $user->bloodType = 'A+';
+
         $user->gender = 'Female';
         $user->phone = '1234567890';
+
+        $user->school = 'Jose Rizal University';
+        $user->certification = false;
+        $user->specialty = 'Eating';
+        $user->registrationNo = '54321';
+        $user->medlicense = '1111122222';
         $user->save();
 
         $user = new User;
@@ -89,10 +104,15 @@ class UsersSeeder extends Seeder
         $user->lastName = 'Afable';
         $user->address = 'PH';
         $user->dob = '06/23/1963';
-        $user->bloodPressure = '68';
-        $user->bloodType = 'AB+';
+
         $user->gender = 'female';
         $user->phone = '1234567890';
+
+        $user->school = 'La Salle University';
+        $user->certification = true;
+        $user->specialty = 'Drinking';
+        $user->registrationNo = '33333';
+        $user->medlicense = '3333300000';
         $user->save();
 
         $user = new User;
@@ -104,10 +124,16 @@ class UsersSeeder extends Seeder
         $user->lastName = 'Gomez';
         $user->address = 'PH';
         $user->dob = '11/17/1967';
-        $user->bloodPressure = '60.3';
-        $user->bloodType = 'O+';
+
         $user->gender = 'Male';
         $user->phone = '1234567890';
+
+        $user->school = 'St. Paul University';
+        $user->certification = true;
+        $user->specialty = 'Lying';
+        $user->registrationNo = '88888';
+        $user->medlicense = '9999900000';
+
         $user->save();
 
         $user = new User;
@@ -119,10 +145,15 @@ class UsersSeeder extends Seeder
         $user->lastName = 'Sita';
         $user->address = 'PH';
         $user->dob = '01/25/1978';
-        $user->bloodPressure = '80';
-        $user->bloodType = 'B';
+
         $user->gender = 'female';
         $user->phone = '1234567890';
+
+        $user->school = 'Ateneo University';
+        $user->certification = true;
+        $user->specialty = 'Talking';
+        $user->registrationNo = '00000';
+        $user->medlicense = '0000000000';
         $user->save();
 
         $user = new User;
@@ -134,10 +165,15 @@ class UsersSeeder extends Seeder
         $user->lastName = 'Aragon';
         $user->address = 'PH';
         $user->dob = '05/25/1969';
-        $user->bloodPressure = '85';
-        $user->bloodType = 'A';
+
         $user->gender = 'female';
         $user->phone = '1234567890';
+
+        $user->school = 'Hello University';
+        $user->certification = false;
+        $user->specialty = 'Speeding';
+        $user->registrationNo = '69691';
+        $user->medlicense = '6969100000';
         $user->save();
 
         // PATIENT

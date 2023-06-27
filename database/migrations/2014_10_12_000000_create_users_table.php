@@ -12,23 +12,39 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
+            //for all
             $table->id();
+
             $table->unsignedBigInteger('userTypeId');
             $table->foreign('userTypeId')->references('id')->on('userTypes');
-            $table->unsignedBigInteger('cadersId')->nullable();
-            $table->foreign('cadersId')->references('id')->on('caders');
+            
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+
             $table->string('firstName');
             $table->string('lastName');
             $table->string('address');
             $table->string('dob');
-            $table->string('bloodPressure');
-            $table->string('bloodType');
             $table->string('gender');
             $table->string('phone');
+
+            //for patients
+            $table->string('bloodPressure')->nullable();
+            $table->string('bloodType')->nullable();
+           
+            //for doctors
+            $table->unsignedBigInteger('cadersId')->nullable();
+            $table->foreign('cadersId')->references('id')->on('caders');
+
+            $table->string('school')->nullable();
+            $table->boolean('certification')->nullable();
+            $table->string('specialty')->nullable();
+           
+            $table->string('registrationNo')->nullable();
+            $table->string('medlicense')->nullable();
+
             $table->timestamps();
         });
     }
