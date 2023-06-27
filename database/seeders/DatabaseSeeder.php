@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             UserTypesSeeder::class,
+            DoctorQualificationsSeeder::class,
             CadersSeeder::class,
-            UsersSeeder::class,
-            
+            UsersSeeder::class,           
         ]);
     }
 }

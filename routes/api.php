@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
+    DoctorQualificationsController,
     CaderController,
     UserController,
 };
@@ -26,9 +27,10 @@ Route::post('/signIn', [UserController::class, 'signIn']);
 // Protected routes
 Route::middleware('auth:sanctum')->group(function () {
     // CADERS
+    Route::get('/doctorQualifications', [DoctorQualificationsController::class, 'getDoctorQualifications']);
     Route::get('/caders', [CaderController::class, 'getCaders']);
     Route::get('/doctorsByCaderId', [UserController::class, 'getDoctorsByCaderId']);
-    
+
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
