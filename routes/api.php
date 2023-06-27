@@ -23,11 +23,11 @@ use JSend\JSendResponse;
 // Unprotected routes
 Route::post('/createAccount', [UserController::class, 'createAccount']);
 Route::post('/signIn', [UserController::class, 'signIn']);
+Route::get('/doctorQualifications', [DoctorQualificationsController::class, 'getDoctorQualifications']);
 
 // Protected routes
 Route::middleware('auth:sanctum')->group(function () {
     // CADERS
-    Route::get('/doctorQualifications', [DoctorQualificationsController::class, 'getDoctorQualifications']);
     Route::get('/caders', [CaderController::class, 'getCaders']);
     Route::get('/doctorsByCaderId', [UserController::class, 'getDoctorsByCaderId']);
 
