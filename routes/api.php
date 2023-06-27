@@ -27,7 +27,7 @@ Route::post('/signIn', [UserController::class, 'signIn']);
 Route::middleware('auth:sanctum')->group(function () {
     // CADERS
     Route::get('/caders', [CaderController::class, 'getCaders']);
-    Route::post('/doctorsByCaderId', [UserController::class, 'getDoctorsByCaderId']);
+    Route::get('/doctorsByCaderId', [UserController::class, 'getDoctorsByCaderId']);
     
 });
 
