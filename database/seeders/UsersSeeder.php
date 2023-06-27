@@ -49,7 +49,7 @@ class UsersSeeder extends Seeder
         $user->phone = '1234567890';
 
         $user->school = 'Mapua University';
-        $user->certification = true;
+        $user->boardCertification = true;
         $user->specialty = 'Gaming';
         $user->registrationNo = '095612345';
         $user->medlicense = '0000011111';
@@ -69,7 +69,7 @@ class UsersSeeder extends Seeder
         $user->phone = '1234567890';
 
         $user->school = 'Adamson University';
-        $user->certification = true;
+        $user->boardCertification = true;
         $user->specialty = 'Sleeping';
         $user->registrationNo = '12345';
         $user->medlicense = '1111100000';
@@ -89,7 +89,7 @@ class UsersSeeder extends Seeder
         $user->phone = '1234567890';
 
         $user->school = 'Jose Rizal University';
-        $user->certification = false;
+        $user->boardCertification = false;
         $user->specialty = 'Eating';
         $user->registrationNo = '54321';
         $user->medlicense = '1111122222';
@@ -109,7 +109,7 @@ class UsersSeeder extends Seeder
         $user->phone = '1234567890';
 
         $user->school = 'La Salle University';
-        $user->certification = true;
+        $user->boardCertification = true;
         $user->specialty = 'Drinking';
         $user->registrationNo = '33333';
         $user->medlicense = '3333300000';
@@ -129,7 +129,7 @@ class UsersSeeder extends Seeder
         $user->phone = '1234567890';
 
         $user->school = 'St. Paul University';
-        $user->certification = true;
+        $user->boardCertification = true;
         $user->specialty = 'Lying';
         $user->registrationNo = '88888';
         $user->medlicense = '9999900000';
@@ -150,7 +150,7 @@ class UsersSeeder extends Seeder
         $user->phone = '1234567890';
 
         $user->school = 'Ateneo University';
-        $user->certification = true;
+        $user->boardCertification = true;
         $user->specialty = 'Talking';
         $user->registrationNo = '00000';
         $user->medlicense = '0000000000';
@@ -170,7 +170,7 @@ class UsersSeeder extends Seeder
         $user->phone = '1234567890';
 
         $user->school = 'Hello University';
-        $user->certification = false;
+        $user->boardCertification = false;
         $user->specialty = 'Speeding';
         $user->registrationNo = '69691';
         $user->medlicense = '6969100000';

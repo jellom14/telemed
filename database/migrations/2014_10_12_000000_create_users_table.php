@@ -25,7 +25,7 @@ return new class extends Migration
 
             $table->string('firstName');
             $table->string('lastName');
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->string('dob');
             $table->string('gender');
             $table->string('phone');
@@ -37,9 +37,9 @@ return new class extends Migration
             //for doctors
             $table->unsignedBigInteger('cadersId')->nullable();
             $table->foreign('cadersId')->references('id')->on('caders');
-
+            $table->boolean('qualification')->nullable();
             $table->string('school')->nullable();
-            $table->boolean('certification')->nullable();
+            $table->boolean('boardCertification')->nullable();
             $table->string('specialty')->nullable();
            
             $table->string('registrationNo')->nullable();
