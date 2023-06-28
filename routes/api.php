@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     DoctorQualificationsController,
+    DoctorSpecialitiesController,
     CaderController,
     UserController,
 };
@@ -24,6 +25,7 @@ use JSend\JSendResponse;
 Route::post('/createAccount', [UserController::class, 'createAccount']);
 Route::post('/signIn', [UserController::class, 'signIn']);
 Route::get('/doctorQualifications', [DoctorQualificationsController::class, 'getDoctorQualifications']);
+Route::get('/doctorSpecialities', [DoctorSpecialitiesController::class, 'getDoctorSpecialities']);
 
 // Protected routes
 Route::middleware('auth:sanctum')->group(function () {
