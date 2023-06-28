@@ -36,14 +36,15 @@ return new class extends Migration
            
             //for doctors
             $table->unsignedBigInteger('cadersId')->nullable();
-            $table->foreign('cadersId')->references('id')->on('caders');
-            $table->boolean('qualification')->nullable();
-            $table->string('school')->nullable();
-            $table->boolean('boardCertification')->nullable();
-            $table->string('specialty')->nullable();
-           
-            $table->string('registrationNo')->nullable();
-            $table->string('medlicense')->nullable();
+            $table->foreign('qualificationId')->references('id')->on('doctor_qualifications');
+            $table->unsignedBigInteger('qualificationId')->nullable();
+            $table->foreign('specialityId')->references('id')->on('doctor_specialities');
+            $table->unsignedBigInteger('specialityId')->nullable();            
+            $table->string('medicalSchoolOfGraduation')->nullable();
+            $table->boolean('boardCertified')->nullable();
+            $table->string('pdeaRegistrationNumber')->nullable();           
+            $table->string('currentMedicalLicenseNumber')->nullable();
+            $table->string('currentMedicalLicenseNumberDateIssued')->nullable();
 
             $table->timestamps();
         });

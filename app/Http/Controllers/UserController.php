@@ -22,7 +22,7 @@ class UserController extends Controller
     public function createAccount(Request $request)
     {
         $data = $request->all();
-        $rules = [
+        $rulesForPatientAccount = [
             'userTypeId' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required',
@@ -30,12 +30,37 @@ class UserController extends Controller
             'lastName' => 'required|string|max:255',
             'address' => 'required',
             'dob' => 'required',
-            'bloodPressure' => 'required',
-            'bloodType' => 'required',
             'gender' => 'required',
             'phone' => 'required',
         ];
-        $validator = Validator::make($data, $rules);
+        $rulesForDoctorAccount = [
+            'userTypeId' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+            'firstName' => 'required|string|max:255',
+            'lastName' => 'required|string|max:255',
+            'dob' => 'required',
+            'gender' => 'required',
+            'phone' => 'required',
+            'qualificationId' => 'required',
+            'specialityId' => 'required',
+            'medicalSchoolOfGraduation' => 'required',
+            'boardCertified' => 'required',
+            'pdeaRegistrationNumber' => 'required',
+            'currentMedicalLicenseNumber' => 'required',
+            'currentMedicalLicenseNumberDateIssued' => 'required',
+        ];
+        $validator = null;
+        $userTypeId = $request->userTypeId;
+        // Doctor
+        if ($userTypeId == 2) {
+            $validator = Validator::make($data, $rulesForDoctorAccount);
+        }
+        // Patient
+        if ($userTypeId == 3) {
+            $validator = Validator::make($data, $rulesForPatientAccount);
+        }
+
         if ($validator->fails()) {
             $messages['message'] = implode(",", $validator->getMessageBag()->all());
             return JSendResponse::fail($messages);
@@ -53,6 +78,13 @@ class UserController extends Controller
                 $user->bloodType = $request->bloodType;
                 $user->gender = $request->gender;
                 $user->phone = $request->phone;
+                $user->qualificationId = $request->qualificationId;
+                $user->specialityId = $request->specialityId;
+                $user->medicalSchoolOfGraduation = $request->medicalSchoolOfGraduation;
+                $user->boardCertified = $request->boardCertified;
+                $user->pdeaRegistrationNumber = $request->pdeaRegistrationNumber;
+                $user->currentMedicalLicenseNumber = $request->currentMedicalLicenseNumber;
+                $user->currentMedicalLicenseNumberDateIssued = $request->currentMedicalLicenseNumberDateIssued;
                 $user->saveOrFail();
                 return JSendResponse::success();
             } catch (Exception $exc) {
@@ -89,6 +121,10 @@ class UserController extends Controller
                     if (Hash::check($password, $user['password'])) {
                         $id = $user['id'];
                         $userData['email'] = $user['email'];
+                        $userData['firstName'] = $user['firstName'];
+                        $userData['lastName'] = $user['lastName'];
+                        $userData['gender'] = $user['gender'];
+                        $userData['dob'] = $user['dob'];
                         $userData['token'] = $user->createToken('auth_token')->plainTextToken;
                         //                        $userData['token'] = $user->createToken('auth_token')->plainTextToken;
                         return JSendResponse::success($userData);

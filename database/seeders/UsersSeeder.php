@@ -18,7 +18,7 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->truncate();
+        // DB::table('users')->truncate();
         // ADMIN
         $user = new User;
         $user->userTypeId = 1;
@@ -48,11 +48,13 @@ class UsersSeeder extends Seeder
         $user->gender = 'female';
         $user->phone = '1234567890';
 
-        $user->school = 'Mapua University';
-        $user->boardCertification = true;
-        $user->specialty = 'Gaming';
-        $user->registrationNo = '095612345';
-        $user->medlicense = '0000011111';
+        $user->qualificationId = 3;
+        $user->specialityId = 3;
+        $user->medicalSchoolOfGraduation = 'Mapua University';
+        $user->boardCertified = true;
+        $user->pdeaRegistrationNumber = '1234567890';
+        $user->currentMedicalLicenseNumber = '095612345';
+        $user->currentMedicalLicenseNumberDateIssued = '28/6/2029';
         $user->save();
 
         $user = new User;
@@ -68,11 +70,13 @@ class UsersSeeder extends Seeder
         $user->gender = 'Female';
         $user->phone = '1234567890';
 
-        $user->school = 'Adamson University';
-        $user->boardCertification = true;
-        $user->specialty = 'Sleeping';
-        $user->registrationNo = '12345';
-        $user->medlicense = '1111100000';
+        $user->qualificationId = 1;
+        $user->specialityId = 1;
+        $user->medicalSchoolOfGraduation = 'Adamson University';
+        $user->boardCertified = true;
+        $user->pdeaRegistrationNumber = '1234567890';
+        $user->currentMedicalLicenseNumber = '095612345';
+        $user->currentMedicalLicenseNumberDateIssued = '7/11/2020';
         $user->save();
 
         $user = new User;
@@ -88,11 +92,13 @@ class UsersSeeder extends Seeder
         $user->gender = 'Female';
         $user->phone = '1234567890';
 
-        $user->school = 'Jose Rizal University';
-        $user->boardCertification = false;
-        $user->specialty = 'Eating';
-        $user->registrationNo = '54321';
-        $user->medlicense = '1111122222';
+        $user->qualificationId = 4;
+        $user->specialityId = 4;
+        $user->medicalSchoolOfGraduation = 'Jose Rizal University';
+        $user->boardCertified = true;
+        $user->pdeaRegistrationNumber = '1234567890';
+        $user->currentMedicalLicenseNumber = '095612345';
+        $user->currentMedicalLicenseNumberDateIssued = '17/2/2015';
         $user->save();
 
         $user = new User;
@@ -108,11 +114,13 @@ class UsersSeeder extends Seeder
         $user->gender = 'female';
         $user->phone = '1234567890';
 
-        $user->school = 'La Salle University';
-        $user->boardCertification = true;
-        $user->specialty = 'Drinking';
-        $user->registrationNo = '33333';
-        $user->medlicense = '3333300000';
+        $user->qualificationId = 2;
+        $user->specialityId = 2;
+        $user->medicalSchoolOfGraduation = 'La Salle University';
+        $user->boardCertified = true;
+        $user->pdeaRegistrationNumber = '1234567890';
+        $user->currentMedicalLicenseNumber = '095612345';
+        $user->currentMedicalLicenseNumberDateIssued = '24/6/2023';
         $user->save();
 
         $user = new User;
@@ -128,11 +136,13 @@ class UsersSeeder extends Seeder
         $user->gender = 'Male';
         $user->phone = '1234567890';
 
-        $user->school = 'St. Paul University';
-        $user->boardCertification = true;
-        $user->specialty = 'Lying';
-        $user->registrationNo = '88888';
-        $user->medlicense = '9999900000';
+        $user->qualificationId = 3;
+        $user->specialityId = 3;
+        $user->medicalSchoolOfGraduation = 'TIP University';
+        $user->boardCertified = true;
+        $user->pdeaRegistrationNumber = '1234567890';
+        $user->currentMedicalLicenseNumber = '095612345';
+        $user->currentMedicalLicenseNumberDateIssued = '7/11/1967';
 
         $user->save();
 
@@ -149,11 +159,13 @@ class UsersSeeder extends Seeder
         $user->gender = 'female';
         $user->phone = '1234567890';
 
-        $user->school = 'Ateneo University';
-        $user->boardCertification = true;
-        $user->specialty = 'Talking';
-        $user->registrationNo = '00000';
-        $user->medlicense = '0000000000';
+        $user->qualificationId = 4;
+        $user->specialityId = 4;
+        $user->medicalSchoolOfGraduation = 'CE University';
+        $user->boardCertified = true;
+        $user->pdeaRegistrationNumber = '1234567890';
+        $user->currentMedicalLicenseNumber = '095612345';
+        $user->currentMedicalLicenseNumberDateIssued = '29/1/2018';
         $user->save();
 
         $user = new User;
@@ -169,11 +181,13 @@ class UsersSeeder extends Seeder
         $user->gender = 'female';
         $user->phone = '1234567890';
 
-        $user->school = 'Hello University';
-        $user->boardCertification = false;
-        $user->specialty = 'Speeding';
-        $user->registrationNo = '69691';
-        $user->medlicense = '6969100000';
+        $user->qualificationId = 5;
+        $user->specialityId = 5;
+        $user->medicalSchoolOfGraduation = 'AMA University';
+        $user->boardCertified = true;
+        $user->pdeaRegistrationNumber = '1234567890';
+        $user->currentMedicalLicenseNumber = '095612345';
+        $user->currentMedicalLicenseNumberDateIssued = '28/6/2029';
         $user->save();
 
         // PATIENT
