@@ -20,6 +20,10 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
+            MetaSymptomsSeeder::class,
+            MetaSurgeriesSeeder::class,
+            MetaMedicalConditionsSeeder::class,
+            MetaDrugAllergiesSeeder::class,
             UserTypesSeeder::class,
             DoctorSpecialitiesSeeder::class,
             DoctorQualificationsSeeder::class,

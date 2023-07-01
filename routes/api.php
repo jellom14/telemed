@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\MetaDrugAllergiesController;
+use App\Http\Controllers\MetaMedicalConditionsController;
+use App\Http\Controllers\MetaSurgeriesController;
+use App\Http\Controllers\MetaSymptomsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
@@ -32,6 +36,11 @@ Route::middleware('auth:sanctum')->group(function () {
     // CADERS
     Route::get('/caders', [CaderController::class, 'getCaders']);
     Route::get('/doctorsByCaderId', [UserController::class, 'getDoctorsByCaderId']);
+    Route::get('/symptoms', [MetaSymptomsController::class, 'getSymptoms']);
+    Route::get('/medicalConditions', [MetaMedicalConditionsController::class, 'getMedicalConditions']);
+    Route::get('/drugAllergies', [MetaDrugAllergiesController::class, 'getDrugAllergies']);
+    Route::get('/surgeries', [MetaSurgeriesController::class, 'getSurgeries']);
+
 
 });
 
