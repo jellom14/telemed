@@ -47,6 +47,7 @@ class UsersSeeder extends Seeder
 
         $user->gender = 'female';
         $user->phone = '1234567890';
+        $user->videoConsultationFee = '1000';
 
         $user->qualificationId = 3;
         $user->specialityId = 3;
@@ -69,6 +70,7 @@ class UsersSeeder extends Seeder
 
         $user->gender = 'Female';
         $user->phone = '1234567890';
+        $user->videoConsultationFee = '1000';
 
         $user->qualificationId = 1;
         $user->specialityId = 1;
@@ -91,6 +93,7 @@ class UsersSeeder extends Seeder
 
         $user->gender = 'Female';
         $user->phone = '1234567890';
+        $user->videoConsultationFee = "1000";
 
         $user->qualificationId = 4;
         $user->specialityId = 4;
@@ -113,6 +116,7 @@ class UsersSeeder extends Seeder
 
         $user->gender = 'female';
         $user->phone = '1234567890';
+        $user->videoConsultationFee = "1000";
 
         $user->qualificationId = 2;
         $user->specialityId = 2;
@@ -135,6 +139,7 @@ class UsersSeeder extends Seeder
 
         $user->gender = 'Male';
         $user->phone = '1234567890';
+        $user->videoConsultationFee = '1000';
 
         $user->qualificationId = 3;
         $user->specialityId = 3;
@@ -158,6 +163,7 @@ class UsersSeeder extends Seeder
 
         $user->gender = 'female';
         $user->phone = '1234567890';
+        $user->videoConsultationFee = '1000';
 
         $user->qualificationId = 4;
         $user->specialityId = 4;
@@ -180,6 +186,7 @@ class UsersSeeder extends Seeder
 
         $user->gender = 'female';
         $user->phone = '1234567890';
+        $user->videoConsultationFee = '1000';
 
         $user->qualificationId = 5;
         $user->specialityId = 5;

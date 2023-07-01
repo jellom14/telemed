@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('dob');
             $table->string('gender');
             $table->string('phone');
+            $table->string('videoConsultationFee')->nullable();
 
             //for patients
             $table->string('bloodPressure')->nullable();

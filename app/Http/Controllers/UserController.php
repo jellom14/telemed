@@ -78,6 +78,7 @@ class UserController extends Controller
                 $user->bloodType = $request->bloodType;
                 $user->gender = $request->gender;
                 $user->phone = $request->phone;
+                $user->videoConsultationFee = $request->videoConsultationFee;
                 $user->qualificationId = $request->qualificationId;
                 $user->specialityId = $request->specialityId;
                 $user->medicalSchoolOfGraduation = $request->medicalSchoolOfGraduation;
