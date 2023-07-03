@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HealthProfileController;
 use App\Http\Controllers\MetaDrugAllergiesController;
 use App\Http\Controllers\MetaMedicalConditionsController;
 use App\Http\Controllers\MetaSurgeriesController;
@@ -40,8 +41,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/medicalConditions', [MetaMedicalConditionsController::class, 'getMedicalConditions']);
     Route::get('/drugAllergies', [MetaDrugAllergiesController::class, 'getDrugAllergies']);
     Route::get('/surgeries', [MetaSurgeriesController::class, 'getSurgeries']);
-
-
+    Route::post('/healthProfile', [HealthProfileController::class, 'createHealthProfile']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
