@@ -24,14 +24,11 @@ class HealthProfileController extends Controller
         $data = $request->all();
         $rules = [
             'lengthOfFeeling' => 'required',
-            'patientId' => 'required',
             'caderId' => 'required',
             'allergicToDrugsComplaint' => 'required',
             'medications' => 'required',
             'medicalConditionComplaint' => 'required',
             'surgeryComplaint' => 'required',
-            'pwdNumber' => 'required',
-            'paymentReferenceNumber' => 'required',
         ];
         
         $validator = Validator::make($data, $rules);
@@ -42,14 +39,12 @@ class HealthProfileController extends Controller
             try {
                 $model = new HealthProfile;
                 $model->lengthOfFeeling = $request->lengthOfFeeling;
-                $model->patientId = $request->patientId;
+                $model->patientId = $request->user()->id;
                 $model->caderId = $request->caderId;
                 $model->medications = $request->medications;
                 $model->allergicToDrugsComplaint = $request->allergicToDrugsComplaint;
                 $model->medicalConditionComplaint = $request->medicalConditionComplaint;
                 $model->surgeryComplaint = $request->surgeryComplaint;
-                $model->pwdNumber = $request->pwdNumber;
-                $model->paymentReferenceNumber = $request->paymentReferenceNumber;
                 $model->saveOrFail();
                 return JSendResponse::success();
             } catch (Exception $exc) {

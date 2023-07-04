@@ -24,8 +24,6 @@ return new class extends Migration {
             $table->text('allergicToDrugsComplaint');
             $table->text('medicalConditionComplaint');
             $table->text('surgeryComplaint');
-            $table->bigInteger('pwdNumber');
-            $table->bigInteger('paymentReferenceNumber');
             $table->timestamps();
             $table->softDeletes();
         });
