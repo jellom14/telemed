@@ -42,6 +42,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/drugAllergies', [MetaDrugAllergiesController::class, 'getDrugAllergies']);
     Route::get('/surgeries', [MetaSurgeriesController::class, 'getSurgeries']);
     Route::post('/createHealthProfile', [HealthProfileController::class, 'createHealthProfile']);
+    Route::post('/bookAppointment', [AppointmentController::class, 'createAppointment']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
