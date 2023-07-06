@@ -12,6 +12,6 @@ class DrugAllergiesHealthProfileMap extends Model
 {
     use HasFactory, SoftDeletes;
     public $table = "drugallergieshealthprofilemap";
-    protected $fillable = ['drugName'];
+    protected $fillable = ['allergyId, healthProfileId'];
 
 }
