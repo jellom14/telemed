@@ -120,12 +120,13 @@ class UserController extends Controller
                     return JSendResponse::fail($messages);
                 } else {
                     if (Hash::check($password, $user['password'])) {
-                        $id = $user['id'];
+                        $userData['id'] = $user['id'];
                         $userData['email'] = $user['email'];
                         $userData['firstName'] = $user['firstName'];
                         $userData['lastName'] = $user['lastName'];
                         $userData['gender'] = $user['gender'];
                         $userData['dob'] = $user['dob'];
+                        $userData['phone'] = $user['phone'];
                         $userData['token'] = $user->createToken('auth_token')->plainTextToken;
                         //                        $userData['token'] = $user->createToken('auth_token')->plainTextToken;
                         return JSendResponse::success($userData);

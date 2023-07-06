@@ -11,5 +11,5 @@ class Appointment extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['doctorId','patientId','caderId','dateOfAppointment','timeOfAppointment',
-    'complaint','pwdIdNumber','pwdIdExpirationDate'];
+    'complaint','pwdIdNumber', 'paymentReferenceNumber', 'pwdIdExpirationDate'];
 }

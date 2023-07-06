@@ -26,7 +26,8 @@ class AppointmentController extends Controller
             'timeOfAppointment' => 'required',
             'complaint' => 'required',
             'pwdIdNumber' => 'required',
-            'pwdIdExpirationDate' => 'required'
+            'pwdIdExpirationDate' => 'required',
+            'paymentReferenceNumber' => 'required'
         ];
 
         $validator = Validator::make($data, $rules);
@@ -45,6 +46,7 @@ class AppointmentController extends Controller
                 $model->complaint = $request->complaint;
                 $model->pwdIdNumber = $request->pwdIdNumber;
                 $model->pwdIdExpirationDate = $request->pwdIdExpirationDate;
+                $model->paymentReferenceNumber = $request->paymentReferenceNumber;
                 $model->push();
 
                 DB::commit();

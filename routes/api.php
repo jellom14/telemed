@@ -12,6 +12,7 @@ use App\Http\Controllers\{
     DoctorSpecialitiesController,
     CaderController,
     UserController,
+    AppointmentController
 };
 use JSend\JSendResponse;
 

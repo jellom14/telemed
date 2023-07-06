@@ -23,8 +23,9 @@ return new class extends Migration {
             $table->string('dateOfAppointment');
             $table->string('timeOfAppointment');
             $table->text('complaint');
-            $table->bigInteger('pwdNumber');
-            $table->bigInteger('paymentReferenceNumber');
+            $table->bigInteger('pwdIdNumber');
+            $table->string('pwdIdExpirationDate');
+            $table->string('paymentReferenceNumber');
             $table->timestamps();
             $table->softDeletes();
         });
