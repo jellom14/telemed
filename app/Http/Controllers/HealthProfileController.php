@@ -72,7 +72,7 @@ class HealthProfileController extends Controller
 
                 for ($idx = 0; $idx < $drugAllergiesCount; $idx++) {
                     $drugAllergiesHealthProfileMap = new DrugAllergiesHealthProfileMap;
-                    $drugAllergiesHealthProfileMap->allergyId = $request->medicalConditionsModelList[$idx]['id'];
+                    $drugAllergiesHealthProfileMap->allergyId = $request->drugAllergiesModelList[$idx]['id'];
                     $drugAllergiesHealthProfileMap->healthProfileId = $model->id;
                     $drugAllergiesHealthProfileMap->push();
                 }
