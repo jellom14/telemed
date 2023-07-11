@@ -13,15 +13,16 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('fromUserId');
+            $table->foreign('fromUserId')->references('id')->on('users');
+            $table->unsignedBigInteger('toUserId');
+            $table->foreign('toUserId')->references('id')->on('users');
+            $table->text('message');
+            $table->date('sentDate');
+            $table->date('readDate')->nullable();
+            $table->jsonb('attachments')->nullable();
             $table->timestamps();
-
-            // $table->bigInteger("staff_id")->unsigned()->nullable();
-            // $table->foreign("staff_id")->references("id")->on("staff");
-            
-            // $table->bigInteger("patient_id")->unsigned()->nullable();
-            // $table->foreign("patient_id")->references("id")->on("patients");
-
-            $table->string('message');
+            $table->softDeletes();
         });
     }
 

@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->foreign('patientId')->references('id')->on('users');
             $table->unsignedBigInteger('caderId');
             $table->foreign('caderId')->references('id')->on('caders');
-            $table->string('dateOfAppointment');
+            $table->date('dateOfAppointment');
             $table->string('timeOfAppointment');
             $table->text('complaint');
             $table->bigInteger('pwdIdNumber');
