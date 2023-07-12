@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->string('address')->nullable();
-            $table->string('dob');
+            $table->date('dob');
             $table->string('gender');
             $table->string('phone');
             $table->string('videoConsultationFee')->nullable();

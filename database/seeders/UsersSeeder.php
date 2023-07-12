@@ -27,7 +27,7 @@ class UsersSeeder extends Seeder
         $user->firstName = 'Jello';
         $user->lastName = 'Monasterial';
         $user->address = 'PH';
-        $user->dob = '01-01-2023';
+        $user->dob = '2023-01-01';
         $user->bloodPressure = '90';
         $user->bloodType = 'A+';
         $user->gender = 'male';
@@ -43,7 +43,7 @@ class UsersSeeder extends Seeder
         $user->firstName = 'Jona';
         $user->lastName = 'Quirimit';
         $user->address = 'PH';
-        $user->dob = '01-01-2023';
+        $user->dob = '2023-01-01';
 
         $user->gender = 'female';
         $user->phone = '1234567890';
@@ -66,7 +66,7 @@ class UsersSeeder extends Seeder
         $user->firstName = 'Rose';
         $user->lastName = 'Enciso';
         $user->address = 'PH';
-        $user->dob = '01-27-1965';
+        $user->dob = '2023-01-01';
 
         $user->gender = 'Female';
         $user->phone = '1234567890';
@@ -89,7 +89,7 @@ class UsersSeeder extends Seeder
         $user->firstName = 'Victoria';
         $user->lastName = 'Morales';
         $user->address = 'PH';
-        $user->dob = '06-27-1970';
+        $user->dob = '2023-01-01';
 
         $user->gender = 'Female';
         $user->phone = '1234567890';
@@ -112,7 +112,7 @@ class UsersSeeder extends Seeder
         $user->firstName = 'Malou';
         $user->lastName = 'Afable';
         $user->address = 'PH';
-        $user->dob = '06-23-1963';
+        $user->dob = '2023-01-01';
 
         $user->gender = 'female';
         $user->phone = '1234567890';
@@ -135,7 +135,7 @@ class UsersSeeder extends Seeder
         $user->firstName = 'Renato';
         $user->lastName = 'Gomez';
         $user->address = 'PH';
-        $user->dob = '11-17-1967';
+        $user->dob = '2023-01-01';
 
         $user->gender = 'Male';
         $user->phone = '1234567890';
@@ -159,7 +159,7 @@ class UsersSeeder extends Seeder
         $user->firstName = 'Tere';
         $user->lastName = 'Sita';
         $user->address = 'PH';
-        $user->dob = '01-25-1978';
+        $user->dob = '2023-01-01';
 
         $user->gender = 'female';
         $user->phone = '1234567890';
@@ -182,7 +182,7 @@ class UsersSeeder extends Seeder
         $user->firstName = 'Vicky';
         $user->lastName = 'Aragon';
         $user->address = 'PH';
-        $user->dob = '05-25-1969';
+        $user->dob = '2023-01-01';
 
         $user->gender = 'female';
         $user->phone = '1234567890';
@@ -205,7 +205,7 @@ class UsersSeeder extends Seeder
         $user->firstName = 'Roby';
         $user->lastName = 'Sulit';
         $user->address = 'PH';
-        $user->dob = '01-01-2023';
+        $user->dob = '2023-01-01';
         $user->bloodPressure = '90';
         $user->bloodType = 'B+';
         $user->gender = 'male';
