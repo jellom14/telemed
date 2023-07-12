@@ -20,8 +20,36 @@ class MessagesController extends Controller
             ->get(
                 [
                     'messages.*',
+                    'fromUserTable.userTypeId AS fromUserTypeId',
                     'fromUserTable.firstName AS fromUserFirstName',
                     'fromUserTable.lastName AS fromUserLastName',
+                    'toUserTable.userTypeId AS toUserTypeId',
+                    'toUserTable.firstName AS toUserFirstName',
+                    'toUserTable.lastName AS toUserLastName',
+                ]
+            )
+            ->all();
+        if (count($messages) > 0) {
+            return JsendResponse::success($messages);
+        } else {
+            $messages['message'] = 'No records found.';
+            return JSendResponse::fail($messages);
+        }
+    }
+
+    public function getMessagesByConversationId(Request $request)
+    {
+        $messages = DB::table('messages')
+            ->join('users as fromUserTable', 'fromUserTable.id', '=', 'messages.fromUserId')
+            ->join('users as toUserTable', 'toUserTable.id', '=', 'messages.toUserId')
+            ->where('conversationId', '=', $request->conversationId)
+            ->get(
+                [
+                    'messages.*',
+                    'fromUserTable.userTypeId AS fromUserTypeId',
+                    'fromUserTable.firstName AS fromUserFirstName',
+                    'fromUserTable.lastName AS fromUserLastName',
+                    'toUserTable.userTypeId AS toUserTypeId',
                     'toUserTable.firstName AS toUserFirstName',
                     'toUserTable.lastName AS toUserLastName',
                 ]

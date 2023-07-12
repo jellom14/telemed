@@ -121,6 +121,7 @@ class UserController extends Controller
                 } else {
                     if (Hash::check($password, $user['password'])) {
                         $userData['id'] = $user['id'];
+                        $userData['userTypeId'] = $user['userTypeId'];
                         $userData['email'] = $user['email'];
                         $userData['firstName'] = $user['firstName'];
                         $userData['lastName'] = $user['lastName'];

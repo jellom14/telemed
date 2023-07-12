@@ -47,6 +47,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/bookAppointment', [AppointmentController::class, 'createAppointment']);
     Route::get('/appointmentByDate', [AppointmentController::class, 'getAppointmentByDate']);
     Route::get('/conversationsByUserId', [MessagesController::class, 'getConversationsByUserId']);
+    Route::get('/messagesByConversationId', [MessagesController::class, 'getMessagesByConversationId']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
