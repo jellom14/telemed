@@ -12,7 +12,8 @@ use App\Http\Controllers\{
     DoctorSpecialitiesController,
     CaderController,
     UserController,
-    AppointmentController
+    AppointmentController,
+    MessagesController
 };
 use JSend\JSendResponse;
 
@@ -45,6 +46,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/createHealthProfile', [HealthProfileController::class, 'createHealthProfile']);
     Route::post('/bookAppointment', [AppointmentController::class, 'createAppointment']);
     Route::get('/appointmentByDate', [AppointmentController::class, 'getAppointmentByDate']);
+    Route::get('/conversationsByUserId', [MessagesController::class, 'getConversationsByUserId']);
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

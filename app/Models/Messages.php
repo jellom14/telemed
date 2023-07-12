@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Message extends Model
+class Messages extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['patient_id', 'staff_id', 'message'];
+    protected $fillable = ['fromUserId', 'toUserId', 'message', 'sentDate', 'readDate', 'attachments'];
 }
