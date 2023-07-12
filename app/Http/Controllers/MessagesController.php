@@ -6,6 +6,7 @@ use App\Models\Messages;
 use Illuminate\Http\Request;
 use JSend\JSendResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class MessagesController extends Controller
 {
@@ -14,7 +15,6 @@ class MessagesController extends Controller
         $messages = DB::table('messages')
             ->join('users as fromUserTable', 'fromUserTable.id', '=', 'messages.fromUserId')
             ->join('users as toUserTable', 'toUserTable.id', '=', 'messages.toUserId')
-            ->distinct('conversationId')
             ->where('fromUserId', '=', $request->user()->id)
             ->orWhere('toUserId', '=', $request->user()->id)
             ->get(
@@ -34,5 +34,4 @@ class MessagesController extends Controller
             return JSendResponse::fail($messages);
         }
     }
-
 }

@@ -22,9 +22,25 @@ class MessagesSeeder extends Seeder
 
         $messages = new Messages;
         $messages->conversationId = 1;
+        $messages->fromUserId = 9;
+        $messages->toUserId = 6;
+        $messages->message = 'We will be having a zoom meeting in a while. Please be early as possible. Let me paste a loooooooooooooooooooooooooooooong text.';
+        $messages->sentDate = '2023-07-12';
+        $messages->readDate = '2023-07-12';
+        $messages->attachments = '{
+            "attachments": [
+              "abc.png",
+              "def.png",
+              "ghi.png"
+            ]
+          }';
+        $messages->save();
+
+        $messages = new Messages;
+        $messages->conversationId = 1;
         $messages->fromUserId = 6;
         $messages->toUserId = 9;
-        $messages->message = 'We will be having a zoom meeting in a while. Please be early as possible.';
+        $messages->message = 'Alright doc!';
         $messages->sentDate = '2023-07-12';
         $messages->readDate = '2023-07-12';
         $messages->attachments = '{
@@ -40,22 +56,6 @@ class MessagesSeeder extends Seeder
         $messages->conversationId = 1;
         $messages->fromUserId = 9;
         $messages->toUserId = 6;
-        $messages->message = 'Alright doc!';
-        $messages->sentDate = '2023-07-12';
-        $messages->readDate = '2023-07-12';
-        $messages->attachments = '{
-            "attachments": [
-              "abc.png",
-              "def.png",
-              "ghi.png"
-            ]
-          }';
-        $messages->save();
-
-        $messages = new Messages;
-        $messages->conversationId = 1;
-        $messages->fromUserId = 6;
-        $messages->toUserId = 9;
         $messages->message = 'Please make sure you have eaten your meal before the call.';
         $messages->sentDate = '2023-07-12';
         $messages->readDate = '2023-07-12';
@@ -70,7 +70,7 @@ class MessagesSeeder extends Seeder
 
         $messages = new Messages;
         $messages->conversationId = 2;
-        $messages->fromUserId = 6;
+        $messages->fromUserId = 9;
         $messages->toUserId = 8;
         $messages->message = 'Hello Jona';
         $messages->sentDate = '2023-07-12';
