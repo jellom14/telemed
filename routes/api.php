@@ -17,6 +17,7 @@ use App\Http\Controllers\{
 };
 use JSend\JSendResponse;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,6 +35,10 @@ Route::post('/signIn', [UserController::class, 'signIn']);
 Route::get('/doctorQualifications', [DoctorQualificationsController::class, 'getDoctorQualifications']);
 Route::get('/doctorSpecialities', [DoctorSpecialitiesController::class, 'getDoctorSpecialities']);
 
+Route::post('/createMessages', [MessagesController::class, 'createMessages']);
+Route::post('/test', function () {
+    return 'Success';
+});
 // Protected routes
 Route::middleware('auth:sanctum')->group(function () {
     // CADERS
@@ -48,6 +53,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/appointmentByDate', [AppointmentController::class, 'getAppointmentByDate']);
     Route::get('/conversationsByUserId', [MessagesController::class, 'getConversationsByUserId']);
     Route::get('/messagesByConversationId', [MessagesController::class, 'getMessagesByConversationId']);
+
+ 
+  
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

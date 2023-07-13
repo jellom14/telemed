@@ -4,8 +4,68 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1bd982851a55a6c206766c64b8bd4ee5",
+    "content-hash": "e149536639f579c76e6c51e667858642",
     "packages": [
+        {
+            "name": "artyuum/symfony-jsend-response",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/artyuum/JSendResponse.git",
+                "reference": "46145c2338974772762692733b7cb5ac8b479218"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/artyuum/JSendResponse/zipball/46145c2338974772762692733b7cb5ac8b479218",
+                "reference": "46145c2338974772762692733b7cb5ac8b479218",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.2 || ^8.0",
+                "symfony/http-foundation": "^4.0 || ^5.0 || ^6.0"
+            },
+            "replace": {
+                "junker/symfony-jsend-response": "<= 0.3.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Junker\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dmitry Kosenkov",
+                    "email": "dk-junker@ya.ru"
+                },
+                {
+                    "name": "Artyum Petrov",
+                    "email": "artyum@protonmail.com"
+                }
+            ],
+            "description": "JSendResponse component for HttpFoundation based applications (Symfony, Silex, Laravel, Drupal, etc.). It follows the JSend specification, allowing you to give consistent JSON responses to your users.",
+            "keywords": [
+                "api",
+                "drupal",
+                "jsend",
+                "json",
+                "response",
+                "silex",
+                "symfony"
+            ],
+            "support": {
+                "source": "https://github.com/artyuum/JSendResponse/tree/1.1.0"
+            },
+            "time": "2022-05-09T16:02:44+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.11.0",
