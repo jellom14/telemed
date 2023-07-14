@@ -17,7 +17,7 @@ class MessagesController extends Controller
     {
         $data = $request->all();
         $rules = [
-            'conversationId' => 'required',
+            // 'conversationId' => 'required',
             'fromUserId' => 'required',
             'toUserId' => 'required',
             'message' => 'required',
@@ -29,8 +29,22 @@ class MessagesController extends Controller
         if ($validator->fails()) {
             $messages['message'] = implode(",", $validator->getMessageBag()->all());
             return JSendResponse::fail($messages);
-        } 
-        else {
+        } else {
+            // When a new meesage is created, check if any conversation has already taken place. 
+            // If the conversation has already taken place, use the existing conversation ID
+            
+            $messages = DB::table('messages')
+                ->where(function ($query) use ($request){
+                    $query->where('fromUserId', '=', $request->user()->id)->where('toUserId', '=', $request->toUserId);
+                })
+                ->where(['fromUserId', '=', $request->user()->id, 'toUserId', '=', $request->toUserId])
+                ->orWhere(['toUserId', '=', $request->toUserId, 'fromUserId', '=', $request->user()->id])
+                ->get()
+                ->values()
+                ->all();
+                $messages['message'] = count($messages);
+                return JSendResponse::fail($messages);
+            // If the conversation is new, create a new conversation ID
             try {
                 DB::beginTransaction();
                 $message = new Messages;
@@ -43,7 +57,7 @@ class MessagesController extends Controller
                 $message->push();
                 DB::commit();
                 return JSendResponse::success();
-                
+
             } catch (Exception $exc) {
                 DB::rollBack();
                 // Log the exception

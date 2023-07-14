@@ -35,7 +35,6 @@ Route::post('/signIn', [UserController::class, 'signIn']);
 Route::get('/doctorQualifications', [DoctorQualificationsController::class, 'getDoctorQualifications']);
 Route::get('/doctorSpecialities', [DoctorSpecialitiesController::class, 'getDoctorSpecialities']);
 
-Route::post('/createMessages', [MessagesController::class, 'createMessages']);
 Route::post('/test', function () {
     return 'Success';
 });
@@ -53,7 +52,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/appointmentByDate', [AppointmentController::class, 'getAppointmentByDate']);
     Route::get('/conversationsByUserId', [MessagesController::class, 'getConversationsByUserId']);
     Route::get('/messagesByConversationId', [MessagesController::class, 'getMessagesByConversationId']);
-
+    Route::post('/createMessages', [MessagesController::class, 'createMessages']);
  
   
 });
