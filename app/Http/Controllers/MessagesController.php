@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use PHPUnit\Exception;
 use Validator;
+use Illuminate\Support\Str;
 
 class MessagesController extends Controller
 {
@@ -18,11 +19,11 @@ class MessagesController extends Controller
         $data = $request->all();
         $rules = [
             // 'conversationId' => 'required',
-            'fromUserId' => 'required',
+            // 'fromUserId' => 'required',
             'toUserId' => 'required',
             'message' => 'required',
-            'attachments' => 'required',
-            'sentDate' => 'required',
+            // 'attachments' => 'required',
+            // 'sentDate' => 'required',
         ];
 
         $validator = Validator::make($data, $rules);
@@ -32,73 +33,80 @@ class MessagesController extends Controller
         } else {
             // When a new meesage is created, check if any conversation has already taken place. 
             // If the conversation has already taken place, use the existing conversation ID
-            
-            $messages = DB::table('messages')
-                ->where(function ($query) use ($request){
-                    $query->where('fromUserId', '=', $request->user()->id)->where('toUserId', '=', $request->toUserId);
-                })
-                ->where(['fromUserId', '=', $request->user()->id, 'toUserId', '=', $request->toUserId])
-                ->orWhere(['toUserId', '=', $request->toUserId, 'fromUserId', '=', $request->user()->id])
-                ->get()
-                ->values()
-                ->all();
-                $messages['message'] = count($messages);
-                return JSendResponse::fail($messages);
-            // If the conversation is new, create a new conversation ID
-            try {
-                DB::beginTransaction();
-                $message = new Messages;
-                $message->conversationId = $request->conversationId;
-                $message->fromUserId = $request->fromUserId;
-                $message->toUserId = $request->toUserId;
-                $message->message = $request->message;
-                $message->attachments = $request->attachments;
-                $message->sentDate = $request->sentDate;
-                $message->push();
-                DB::commit();
-                return JSendResponse::success();
 
-            } catch (Exception $exc) {
-                DB::rollBack();
-                // Log the exception
-                Log::emergency($exc->getMessage());
-                return JSendResponse::error('Something went wrong. Please contact your project administrator for help explaining what you tried to do.');
+            $messagesCount = DB::table('messages')
+                ->where(function ($query) use ($request) {
+                    $query->where('fromUserId', '=', $request->user()->id)
+                        ->where('toUserId', '=', $request->toUserId);
+                })
+                ->orWhere(function ($query) use ($request) {
+                    $query->where('fromUserId', '=', $request->toUserId)
+                        ->where('toUserId', '=', $request->user()->id);
+                })->count();
+
+            if ($messagesCount > 0) {
+                // A conversation exists. So use the existing conversation Id
+                $messages = DB::table('messages')
+                    ->where(function ($query) use ($request) {
+                        $query->where('fromUserId', '=', $request->user()->id)
+                            ->where('toUserId', '=', $request->toUserId);
+                    })
+                    ->orWhere(function ($query) use ($request) {
+                        $query->where('fromUserId', '=', $request->toUserId)
+                            ->where('toUserId', '=', $request->user()->id);
+                    })
+                    ->get()
+                    ->values()
+                    ->first();
+                $conversationId = $messages->conversationId;
+
+                try {
+                    DB::beginTransaction();
+                    $message = new Messages;
+                    $message->conversationId = $conversationId;
+                    $message->fromUserId = $request->user()->id;
+                    $message->toUserId = $request->toUserId;
+                    $message->message = $request->message;
+                    $message->attachments = $request->attachments;
+                    $message->sentDate = $request->sentDate;
+                    $message->push();
+                    DB::commit();
+                    return JSendResponse::success();
+
+                } catch (Exception $exc) {
+                    DB::rollBack();
+                    // Log the exception
+                    Log::emergency($exc->getMessage());
+                    return JSendResponse::error('Something went wrong. Please contact your project administrator for help explaining what you tried to do.');
+                }
+
+            } else {
+                // No conversation exists. So create a new conversation Id
+
+                $conversationId = (string) Str::uuid();
+                try {
+                    DB::beginTransaction();
+                    $message = new Messages;
+                    $message->conversationId = $conversationId;
+                    $message->fromUserId = $request->user()->id;
+                    $message->toUserId = $request->toUserId;
+                    $message->message = $request->message;
+                    $message->attachments = $request->attachments;
+                    $message->sentDate = $request->sentDate;
+                    $message->push();
+                    DB::commit();
+                    return JSendResponse::success();
+
+                } catch (Exception $exc) {
+                    DB::rollBack();
+                    // Log the exception
+                    Log::emergency($exc->getMessage());
+                    return JSendResponse::error('Something went wrong. Please contact your project administrator for help explaining what you tried to do.');
+                }
             }
+
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public function getConversationsByUserId(Request $request)
     {
