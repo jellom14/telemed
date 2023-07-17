@@ -119,6 +119,14 @@ class UserController extends Controller
                     $messages['message'] = "Either user doesn't exist or isn't active. Please contact your project administrator for help explaining what you tried to do.";
                     return JSendResponse::fail($messages);
                 } else {
+                    $device_key = $request->input('device_key');
+                    if ($device_key != null) {
+                        DB::table('users')
+                            ->where('id', $user['id'])
+                            ->limit(1)
+                            ->update(array('device_key' => $device_key));
+                    }
+
                     if (Hash::check($password, $user['password'])) {
                         $userData['id'] = $user['id'];
                         $userData['userTypeId'] = $user['userTypeId'];

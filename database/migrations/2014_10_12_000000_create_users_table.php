@@ -47,6 +47,9 @@ return new class extends Migration
             $table->string('currentMedicalLicenseNumber')->nullable();
             $table->string('currentMedicalLicenseNumberDateIssued')->nullable();
 
+            // for firebase cloud messaging
+            $table->string('device_key')->nullable();
+
             $table->timestamps();
         });
     }
