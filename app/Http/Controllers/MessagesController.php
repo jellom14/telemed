@@ -72,7 +72,7 @@ class MessagesController extends Controller
                     $message->sentDate = $request->sentDate;
                     $message->push();
                     DB::commit();
-                    self::sendFCMnotification($request->toUserId, "Telemed", $request->message);
+                    self::sendFCMnotification($request->user()->id, $request->toUserId, "Telemed", $request->message);
                     return JSendResponse::success();
 
                 } catch (Exception $exc) {
@@ -110,10 +110,34 @@ class MessagesController extends Controller
         }
     }
 
-    public function sendFCMnotification($toUserId, $title, $message)
+    public function sendFCMnotification($fromUserId, $toUserId, $title, $message)
     {
         $url = 'https://fcm.googleapis.com/fcm/send';
         // $FcmToken = User::whereNotNull('device_key')->pluck('device_key')->all();
+
+        // $req_user = User::query()
+        //     ->where('id', '=', $fromUserId)
+        //     //                        ->where('active', '=', true)
+        //     ->first();
+
+        // $userTypeId = $req_user['userTypeId'];
+        // $user = User::query()
+        //     ->where('id', '=', $toUserId)
+        //     //                        ->where('active', '=', true)
+        //     ->first();
+        // // patient
+        // if($userTypeId == 3){
+        //     $user = User::query()
+        //     ->where('id', '=', $toUserId)
+        //     //                        ->where('active', '=', true)
+        //     ->first();
+        // }
+        // // doctor
+        // if($userTypeId == 2){
+
+        // }
+        Log::alert("from userId: " . $fromUserId);
+        Log::alert("to userId: " . $toUserId);
         $user = User::query()
             ->where('id', '=', $toUserId)
             //                        ->where('active', '=', true)
@@ -162,7 +186,7 @@ class MessagesController extends Controller
         // Close connection
         curl_close($ch);
         // FCM response
-        dd($result);
+        // dd($result);
     }
 
     public function getConversationsByUserId(Request $request)
