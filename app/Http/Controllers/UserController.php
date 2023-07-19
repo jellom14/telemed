@@ -137,6 +137,7 @@ class UserController extends Controller
                         $userData['dob'] = $user['dob'];
                         $userData['phone'] = $user['phone'];
                         $userData['token'] = $user->createToken('auth_token')->plainTextToken;
+                        $userData['device_key'] = $user['device_key'];
                         //                        $userData['token'] = $user->createToken('auth_token')->plainTextToken;
                         return JSendResponse::success($userData);
                     } else {

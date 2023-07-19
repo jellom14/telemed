@@ -72,7 +72,7 @@ class MessagesController extends Controller
                     $message->sentDate = $request->sentDate;
                     $message->push();
                     DB::commit();
-                    self::sendFCMnotification($request->toUserId, "Telemed", $message);
+                    self::sendFCMnotification($request->toUserId, "Telemed", $request->message);
                     return JSendResponse::success();
 
                 } catch (Exception $exc) {
@@ -119,15 +119,18 @@ class MessagesController extends Controller
             //                        ->where('active', '=', true)
             ->first();
         $FcmToken = $user['device_key'];
-        
+        // Log::alert($FcmToken);
 
         $serverKey = config('app.FIREBASE_SERVER_KEY');
 
         $data = [
             "registration_ids" => array($FcmToken),
+            // "to" => json_encode(array($FcmToken)),
+            "priority" => "high",
             "notification" => [
                 "title" => $title,
                 "body" => $message,
+                "sound" => "default"
             ]
         ];
         $encodedData = json_encode($data);
@@ -150,10 +153,10 @@ class MessagesController extends Controller
         curl_setopt($ch, CURLOPT_POSTFIELDS, $encodedData);
         // Execute post
         $result = curl_exec($ch);
-        
+        // Log::alert(curl_exec($ch));
         
         if ($result === FALSE) {
-            Log::alert(curl_error($ch));
+            // Log::alert(curl_error($ch));
             die('Curl failed: ' . curl_error($ch));
         }
         // Close connection
