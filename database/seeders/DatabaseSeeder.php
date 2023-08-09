@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             DoctorQualificationsSeeder::class,
             CadersSeeder::class,
             UsersSeeder::class,           
+            ConversationsSeeder::class,  
             MessagesSeeder::class,           
         ]);
     }

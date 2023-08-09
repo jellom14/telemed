@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Conversations;
 use App\Models\Messages;
 use Illuminate\Http\Request;
 use JSend\JSendResponse;
@@ -15,6 +16,9 @@ use App\Models\User;
 class MessagesController extends Controller
 {
 
+    // Create a message by checking if the conversation has already occured between them. 
+    // If conversation doesn't exist, create a conversation(create a unique conversationId)
+    // If conversation exists, create a message using the conversationId.
     public function createMessages(Request $request)
     {
         $data = $request->all();
@@ -32,34 +36,35 @@ class MessagesController extends Controller
             $messages['message'] = implode(",", $validator->getMessageBag()->all());
             return JSendResponse::fail($messages);
         } else {
-            // When a new meesage is created, check if any conversation has already taken place. 
-            // If the conversation has already taken place, use the existing conversation ID
+            $toUserId = $request->toUserId;
+            $fromUserId = $request->user()->id;
 
-            $messagesCount = DB::table('messages')
-                ->where(function ($query) use ($request) {
-                    $query->where('fromUserId', '=', $request->user()->id)
-                        ->where('toUserId', '=', $request->toUserId);
+            $conversationsCount = DB::table('conversations')
+                ->where(function ($query) use ($fromUserId, $toUserId) {
+                    $query->where('fromUserId', '=', $fromUserId)
+                        ->where('toUserId', '=', $toUserId);
                 })
-                ->orWhere(function ($query) use ($request) {
-                    $query->where('fromUserId', '=', $request->toUserId)
-                        ->where('toUserId', '=', $request->user()->id);
+                ->orWhere(function ($query) use ($fromUserId, $toUserId) {
+                    $query->where('fromUserId', '=', $fromUserId)
+                        ->where('toUserId', '=', $toUserId);
                 })->count();
 
-            if ($messagesCount > 0) {
+            if ($conversationsCount > 0) {
                 // A conversation exists. So use the existing conversation Id
-                $messages = DB::table('messages')
-                    ->where(function ($query) use ($request) {
-                        $query->where('fromUserId', '=', $request->user()->id)
-                            ->where('toUserId', '=', $request->toUserId);
+                $conversations = DB::table('conversations')
+                    ->where(function ($query) use ($fromUserId, $toUserId) {
+                        $query->where('fromUserId', '=', $fromUserId)
+                            ->where('toUserId', '=', $toUserId);
                     })
-                    ->orWhere(function ($query) use ($request) {
-                        $query->where('fromUserId', '=', $request->toUserId)
-                            ->where('toUserId', '=', $request->user()->id);
+                    ->orWhere(function ($query) use ($fromUserId, $toUserId) {
+                        $query->where('fromUserId', '=', $fromUserId)
+                            ->where('toUserId', '=', $toUserId);
                     })
                     ->get()
                     ->values()
                     ->first();
-                $conversationId = $messages->conversationId;
+
+                $conversationId = $conversations->id;
 
                 try {
                     DB::beginTransaction();
@@ -84,10 +89,15 @@ class MessagesController extends Controller
 
             } else {
                 // No conversation exists. So create a new conversation Id
-
-                $conversationId = (string) Str::uuid();
                 try {
                     DB::beginTransaction();
+
+                    $conversation = new Conversations;
+                    $conversation->fromUserId = $request->user()->id;
+                    $conversation->toUserId = $request->toUserId;
+                    $conversation->push();
+
+                    $conversationId = $conversation->id;
                     $message = new Messages;
                     $message->conversationId = $conversationId;
                     $message->fromUserId = $request->user()->id;
@@ -178,7 +188,7 @@ class MessagesController extends Controller
         // Execute post
         $result = curl_exec($ch);
         // Log::alert(curl_exec($ch));
-        
+
         if ($result === FALSE) {
             // Log::alert(curl_error($ch));
             die('Curl failed: ' . curl_error($ch));
@@ -191,29 +201,84 @@ class MessagesController extends Controller
 
     public function getConversationsByUserId(Request $request)
     {
-        $messages = DB::table('messages')
-            ->join('users as fromUserTable', 'fromUserTable.id', '=', 'messages.fromUserId')
-            ->join('users as toUserTable', 'toUserTable.id', '=', 'messages.toUserId')
-            ->where('fromUserId', '=', $request->user()->id)
-            ->orWhere('toUserId', '=', $request->user()->id)
+        // $data = $request->all();
+        // $rules = [
+        //     'toUserId' => 'required',
+        // ];
+
+        // $validator = Validator::make($data, $rules);
+        // if ($validator->fails()) {
+        //     $messages['message'] = implode(",", $validator->getMessageBag()->all());
+        //     return JSendResponse::fail($messages);
+        // } else {
+
+        $fromUserId = $request->user()->id;
+        $conversations = DB::table('conversations')
+            ->where('fromUserId', '=', $fromUserId)
+            ->orWhere('toUserId', '=', $fromUserId)
+
+            // ->where(function ($query) use ($fromUserId) {
+            //     $query->where('fromUserId', '=', $fromUserId);
+            //         // ->where('toUserId', '=', $toUserId);
+            // })
+            // ->orWhere(function ($query) use ($fromUserId) {
+            //     $query->where('toUserId', '=', $fromUserId);
+            //         // ->where('toUserId', '=', $toUserId);
+            // })
+
+            // $messages = DB::table('messages')
+            ->join('users as fromUserTable', 'fromUserTable.id', '=', 'conversations.fromUserId')
+            ->join('users as toUserTable', 'toUserTable.id', '=', 'conversations.toUserId')
+            ->where('fromUserId', '=', $fromUserId)
+            ->orWhere('toUserId', '=', $fromUserId)
             ->get(
                 [
-                    'messages.*',
+                    'conversations.*',
                     'fromUserTable.userTypeId AS fromUserTypeId',
                     'fromUserTable.firstName AS fromUserFirstName',
                     'fromUserTable.lastName AS fromUserLastName',
+                    'fromUserTable.device_key AS fromUserDeviceKey',
                     'toUserTable.userTypeId AS toUserTypeId',
                     'toUserTable.firstName AS toUserFirstName',
                     'toUserTable.lastName AS toUserLastName',
+                    'toUserTable.device_key AS toUserDeviceKey',
                 ]
             )
+            // ->last();
             ->all();
-        if (count($messages) > 0) {
-            return JsendResponse::success($messages);
+        for ($idx = 0; $idx < count($conversations); $idx++) {
+            $messages = DB::table('messages')
+                ->join('users as fromUserTable', 'fromUserTable.id', '=', 'messages.fromUserId')
+                ->join('users as toUserTable', 'toUserTable.id', '=', 'messages.toUserId')
+                ->where('conversationId', '=', $conversations[$idx]->id)
+                ->get(
+                    [
+                        'messages.*',
+                        'fromUserTable.userTypeId AS fromUserTypeId',
+                        'fromUserTable.firstName AS fromUserFirstName',
+                        'fromUserTable.lastName AS fromUserLastName',
+                        'fromUserTable.device_key AS fromUserDeviceKey',
+                        'toUserTable.userTypeId AS toUserTypeId',
+                        'toUserTable.firstName AS toUserFirstName',
+                        'toUserTable.lastName AS toUserLastName',
+                        'toUserTable.device_key AS toUserDeviceKey',
+                    ]
+                )
+                ->last();
+            $conversations[$idx]->message = $messages->message;
+            $conversations[$idx]->sentDate = $messages->sentDate;
+            // var_dump($conversations);
+        }
+        // var_dump($conversations[0]->id);
+        // $messagesArray[] = $messages;
+        // $messages = $messagesArray;
+        if (count($conversations) > 0) {
+            return JsendResponse::success($conversations);
         } else {
             $messages['message'] = 'No records found.';
             return JSendResponse::fail($messages);
         }
+        // }
     }
 
     public function getMessagesByConversationId(Request $request)
@@ -228,9 +293,11 @@ class MessagesController extends Controller
                     'fromUserTable.userTypeId AS fromUserTypeId',
                     'fromUserTable.firstName AS fromUserFirstName',
                     'fromUserTable.lastName AS fromUserLastName',
+                    'fromUserTable.device_key AS fromUserDeviceKey',
                     'toUserTable.userTypeId AS toUserTypeId',
                     'toUserTable.firstName AS toUserFirstName',
                     'toUserTable.lastName AS toUserLastName',
+                    'toUserTable.device_key AS toUserDeviceKey',
                 ]
             )
             ->all();
