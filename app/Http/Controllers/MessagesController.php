@@ -39,14 +39,17 @@ class MessagesController extends Controller
             $toUserId = $request->toUserId;
             $fromUserId = $request->user()->id;
 
+            Log::alert("from userId: " . $fromUserId);
+            Log::alert("to userId: " . $toUserId);
+
             $conversationsCount = DB::table('conversations')
                 ->where(function ($query) use ($fromUserId, $toUserId) {
                     $query->where('fromUserId', '=', $fromUserId)
                         ->where('toUserId', '=', $toUserId);
                 })
                 ->orWhere(function ($query) use ($fromUserId, $toUserId) {
-                    $query->where('fromUserId', '=', $fromUserId)
-                        ->where('toUserId', '=', $toUserId);
+                    $query->where('fromUserId', '=', $toUserId)
+                        ->where('toUserId', '=', $fromUserId);
                 })->count();
 
             if ($conversationsCount > 0) {
@@ -57,8 +60,8 @@ class MessagesController extends Controller
                             ->where('toUserId', '=', $toUserId);
                     })
                     ->orWhere(function ($query) use ($fromUserId, $toUserId) {
-                        $query->where('fromUserId', '=', $fromUserId)
-                            ->where('toUserId', '=', $toUserId);
+                        $query->where('fromUserId', '=', $toUserId)
+                            ->where('toUserId', '=', $fromUserId);
                     })
                     ->get()
                     ->values()
