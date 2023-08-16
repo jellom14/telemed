@@ -89,4 +89,34 @@ class AppointmentController extends Controller
             return JSendResponse::fail($messages);
         }
     }
+
+    public function getAppointment(Request $request)
+    {
+        $appointments = DB::table('appointments')
+            ->join('users', 'users.id', '=', 'appointments.doctorId')
+            ->get(
+                [
+                    'appointments.*',
+                    'users.firstName',
+                    'users.lastName',
+                ]
+            )
+            ->sortBy('timeOfAppointment')
+            ->values()
+            ->all();
+
+        // $appointments = Appointment::all()
+        //     ->join('farms', 'farms.id', '=', 'flocks.farmId')
+        //     ->where('dateOfAppointment', '=', $request->dateOfAppointment)
+        //     ->sortBy('timeOfAppointment')
+        //     ->values()
+        //     ->all();
+        if (count($appointments) > 0) {
+            return JsendResponse::success($appointments);
+        } else {
+            $messages['message'] = 'No records found.';
+            return JSendResponse::fail($messages);
+        }
+    }
+
 }

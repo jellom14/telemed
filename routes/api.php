@@ -50,6 +50,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/createHealthProfile', [HealthProfileController::class, 'createHealthProfile']);
     Route::post('/bookAppointment', [AppointmentController::class, 'createAppointment']);
     Route::get('/appointmentByDate', [AppointmentController::class, 'getAppointmentByDate']);
+    Route::get('/appointment', [AppointmentController::class, 'getAppointment']);
     Route::get('/conversationsByUserId', [MessagesController::class, 'getConversationsByUserId']);
     Route::get('/messagesByConversationId', [MessagesController::class, 'getMessagesByConversationId']);
     Route::post('/createMessages', [MessagesController::class, 'createMessages']);
