@@ -1,10 +1,5 @@
 <?php
 
-use App\Http\Controllers\HealthProfileController;
-use App\Http\Controllers\MetaDrugAllergiesController;
-use App\Http\Controllers\MetaMedicalConditionsController;
-use App\Http\Controllers\MetaSurgeriesController;
-use App\Http\Controllers\MetaSymptomsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
@@ -13,7 +8,11 @@ use App\Http\Controllers\{
     CaderController,
     UserController,
     AppointmentController,
-    MessagesController
+    MessagesController,
+    MetaDrugAllergiesController,
+    MetaMedicalConditionsController,
+    MetaSurgeriesController,
+    MetaSymptomsController,
 };
 use JSend\JSendResponse;
 
@@ -47,10 +46,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/medicalConditions', [MetaMedicalConditionsController::class, 'getMedicalConditions']);
     Route::get('/drugAllergies', [MetaDrugAllergiesController::class, 'getDrugAllergies']);
     Route::get('/surgeries', [MetaSurgeriesController::class, 'getSurgeries']);
-    Route::post('/createHealthProfile', [HealthProfileController::class, 'createHealthProfile']);
     Route::post('/bookAppointment', [AppointmentController::class, 'createAppointment']);
     Route::get('/appointmentByDate', [AppointmentController::class, 'getAppointmentByDate']);
     Route::get('/appointment', [AppointmentController::class, 'getAppointment']);
+    Route::get('/healthProfileByPatientId', [HealthProfileController::class, 'getHealthProfileByPatientId']);
     Route::get('/conversationsByUserId', [MessagesController::class, 'getConversationsByUserId']);
     Route::get('/messagesByConversationId', [MessagesController::class, 'getMessagesByConversationId']);
     Route::post('/createMessages', [MessagesController::class, 'createMessages']);

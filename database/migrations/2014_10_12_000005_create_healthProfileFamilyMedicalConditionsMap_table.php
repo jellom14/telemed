@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('FamMedicalConditionsHealthProfileMap', function (Blueprint $table) {
+        Schema::create('FamMedicalConditionsAppointmentsMap', function (Blueprint $table) {
             //for all
             $table->id();
 
             $table->unsignedBigInteger('medicalConditionId');
             $table->foreign('medicalConditionId')->references('id')->on('meta_medical_conditions');
-            $table->unsignedBigInteger('healthProfileId');
-            $table->foreign('healthProfileId')->references('id')->on('healthProfile');
+            $table->unsignedBigInteger('appointmentId');
+            $table->foreign('appointmentId')->references('id')->on('appointments');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('FamMedicalConditionsHealthProfileMap');
+        Schema::dropIfExists('FamMedicalConditionsAppointmentsMap');
     }
 };

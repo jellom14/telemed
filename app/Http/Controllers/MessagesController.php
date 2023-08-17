@@ -149,8 +149,8 @@ class MessagesController extends Controller
         // if($userTypeId == 2){
 
         // }
-        Log::alert("from userId: " . $fromUserId);
-        Log::alert("to userId: " . $toUserId);
+        // Log::alert("from userId: " . $fromUserId);
+        // Log::alert("to userId: " . $toUserId);
         $user = User::query()
             ->where('id', '=', $toUserId)
             //                        ->where('active', '=', true)

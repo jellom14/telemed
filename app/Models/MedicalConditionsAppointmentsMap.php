@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class SurgeriesHealthProfileMap extends Model
+class MedicalConditionsHealthProfileMap extends Model
 {
     use HasFactory, SoftDeletes;
-    public $table = "surgerieshealthprofilemap";
-    protected $fillable = ['surgeryName'];
+
+    public $table = "medicalconditionsAppointmentsMap";
+    protected $fillable = ['medicalCondition'];
 
 }

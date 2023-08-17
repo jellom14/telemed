@@ -13,7 +13,13 @@ return new class extends Migration {
         Schema::create('appointments', function (Blueprint $table) {
 
             $table->id();
-            // Add Health profile ID
+            // Health profile
+            $table->string('lengthOfFeeling');
+            $table->text('medications');
+            $table->text('allergicToDrugsComplaint');
+            $table->text('medicalConditionComplaint');
+            $table->text('surgeryComplaint');
+            // Appointment
             $table->unsignedBigInteger('doctorId');
             $table->foreign('doctorId')->references('id')->on('users');
             $table->unsignedBigInteger('patientId');

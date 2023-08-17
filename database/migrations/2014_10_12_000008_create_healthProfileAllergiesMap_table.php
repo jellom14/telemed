@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('DrugAllergiesHealthProfileMap', function (Blueprint $table) {
+        Schema::create('DrugAllergiesAppointmentsMap', function (Blueprint $table) {
             //for all
             $table->id();
 
             $table->unsignedBigInteger('allergyId');
             $table->foreign('allergyId')->references('id')->on('meta_drug_allergies');
-            $table->unsignedBigInteger('healthProfileId');
-            $table->foreign('healthProfileId')->references('id')->on('healthProfile');
+            $table->unsignedBigInteger('appointmentId');
+            $table->foreign('appointmentId')->references('id')->on('appointments');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('DrugAllergiesHealthProfileMap');
+        Schema::dropIfExists('DrugAllergiesAppointmentsMap');
     }
 };
