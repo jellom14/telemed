@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\DB;
 use Validator;
 use Exception;
 use Illuminate\Support\Facades\Log;
-use App\Models\DrugAllergiesHealthProfileMap;
-use App\Models\FamMedicalConditionsHealthProfileMap;
-use App\Models\MedicalConditionsHealthProfileMap;
-use App\Models\SurgeriesHealthProfileMap;
-use App\Models\SymptomsHealthProfileMap;
+use App\Models\DrugAllergiesAppointmentsMap;
+use App\Models\FamMedicalConditionsAppointmentsMap;
+use App\Models\MedicalConditionsAppointmentsMap;
+use App\Models\SurgeriesAppointmentsMap;
+use App\Models\SymptomsAppointmentsMap;
 
 class AppointmentController extends Controller
 {
@@ -74,7 +74,7 @@ class AppointmentController extends Controller
                 }
 
                 for ($idx = 0; $idx < $symptomsCount; $idx++) {
-                    $symptomsHealthProfileMap = new SymptomsHealthProfileMap;
+                    $symptomsHealthProfileMap = new SymptomsAppointmentsMap;
                     $symptomsHealthProfileMap->symptomId = $request->symptomsModelList[$idx]['id'];
                     $symptomsHealthProfileMap->appointmentId = $model->id;
                     $symptomsHealthProfileMap->push();
@@ -86,7 +86,7 @@ class AppointmentController extends Controller
                 }
 
                 for ($idx = 0; $idx < $drugAllergiesCount; $idx++) {
-                    $drugAllergiesHealthProfileMap = new DrugAllergiesHealthProfileMap;
+                    $drugAllergiesHealthProfileMap = new DrugAllergiesAppointmentsMap;
                     $drugAllergiesHealthProfileMap->allergyId = $request->drugAllergiesModelList[$idx]['id'];
                     $drugAllergiesHealthProfileMap->appointmentId = $model->id;
                     $drugAllergiesHealthProfileMap->push();
@@ -98,7 +98,7 @@ class AppointmentController extends Controller
                 }
 
                 for ($idx = 0; $idx < $medicalConditionsCount; $idx++) {
-                    $medicalConditionsHealthProfileMap = new MedicalConditionsHealthProfileMap;
+                    $medicalConditionsHealthProfileMap = new MedicalConditionsAppointmentsMap;
                     $medicalConditionsHealthProfileMap->medicalConditionId = $request->medicalConditionsModelList[$idx]['id'];
                     $medicalConditionsHealthProfileMap->appointmentId = $model->id;
                     $medicalConditionsHealthProfileMap->push();
@@ -110,7 +110,7 @@ class AppointmentController extends Controller
                 }
 
                 for ($idx = 0; $idx < $surgeriesCount; $idx++) {
-                    $surgeriesHealthProfileMap = new SurgeriesHealthProfileMap;
+                    $surgeriesHealthProfileMap = new SurgeriesAppointmentsMap;
                     $surgeriesHealthProfileMap->surgeryId = $request->surgeriesModelList[$idx]['id'];
                     $surgeriesHealthProfileMap->appointmentId = $model->id;
                     $surgeriesHealthProfileMap->push();
@@ -122,7 +122,7 @@ class AppointmentController extends Controller
                 }
 
                 for ($idx = 0; $idx < $famMedicalConditionsCount; $idx++) {
-                    $famMedicalConditionsHealthProfileMap = new FamMedicalConditionsHealthProfileMap;
+                    $famMedicalConditionsHealthProfileMap = new FamMedicalConditionsAppointmentsMap;
                     $famMedicalConditionsHealthProfileMap->medicalConditionId = $request->famMedicalConditionsModelList[$idx]['id'];
                     $famMedicalConditionsHealthProfileMap->appointmentId = $model->id;
                     $famMedicalConditionsHealthProfileMap->push();

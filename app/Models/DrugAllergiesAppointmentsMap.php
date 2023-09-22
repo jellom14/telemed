@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class DrugAllergiesHealthProfileMap extends Model
+class DrugAllergiesAppointmentsMap extends Model
 {
     use HasFactory, SoftDeletes;
     public $table = "drugallergiesAppointmentsMap";
