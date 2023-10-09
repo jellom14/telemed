@@ -27,7 +27,9 @@ use JSend\JSendResponse;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
+Route::get('/greeting', function () {
+    return 'Hello World';
+});
 // Unprotected routes
 Route::post('/createAccount', [UserController::class, 'createAccount']);
 Route::post('/signIn', [UserController::class, 'signIn']);
