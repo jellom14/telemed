@@ -27,13 +27,6 @@ class MessagesSeeder extends Seeder
     $messages->message = 'Shall we have a zoom meeting in a while? Let me paste a loooooooooooooooooooooooooooooong text.';
     $messages->sentDate = '2023-07-12';
     $messages->readDate = '2023-07-12';
-    $messages->attachments = '{
-            "attachments": [
-              "abc.png",
-              "def.png",
-              "ghi.png"
-            ]
-          }';
     $messages->save();
 
     $messages = new Messages;
@@ -43,13 +36,6 @@ class MessagesSeeder extends Seeder
     $messages->message = 'Alright Roby!';
     $messages->sentDate = '2023-07-12';
     $messages->readDate = '2023-07-12';
-    $messages->attachments = '{
-            "attachments": [
-              "abc.png",
-              "def.png",
-              "ghi.png"
-            ]
-          }';
     $messages->save();
 
     $messages = new Messages;
@@ -59,13 +45,6 @@ class MessagesSeeder extends Seeder
     $messages->message = 'Please make sure you have eaten your meal before the call.';
     $messages->sentDate = '2023-07-12';
     $messages->readDate = '2023-07-12';
-    $messages->attachments = '{
-            "attachments": [
-              "abc.png",
-              "def.png",
-              "ghi.png"
-            ]
-          }';
     $messages->save();
 
     $messages = new Messages;
@@ -75,13 +54,6 @@ class MessagesSeeder extends Seeder
     $messages->message = 'Hello Jona';
     $messages->sentDate = '2023-07-12';
     $messages->readDate = '2023-07-12';
-    $messages->attachments = '{
-            "attachments": [
-              "abc.png",
-              "def.png",
-              "ghi.png"
-            ]
-          }';
     $messages->save();
 
     $messages = new Messages;
@@ -91,13 +63,6 @@ class MessagesSeeder extends Seeder
     $messages->message = 'Hello Jello';
     $messages->sentDate = '2023-07-12';
     $messages->readDate = '2023-07-12';
-    $messages->attachments = '{
-            "attachments": [
-              "abc.png",
-              "def.png",
-              "ghi.png"
-            ]
-          }';
     $messages->save();
 
 

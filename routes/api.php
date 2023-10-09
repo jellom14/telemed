@@ -53,6 +53,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/conversationsByUserId', [MessagesController::class, 'getConversationsByUserId']);
     Route::get('/messagesByConversationId', [MessagesController::class, 'getMessagesByConversationId']);
     Route::post('/createMessages', [MessagesController::class, 'createMessages']);
+    Route::post('/createAttachment', [MessagesController::class, 'createAttachment']);
  
   
 });

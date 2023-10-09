@@ -39,8 +39,8 @@ class MessagesController extends Controller
             $toUserId = $request->toUserId;
             $fromUserId = $request->user()->id;
 
-            Log::alert("from userId: " . $fromUserId);
-            Log::alert("to userId: " . $toUserId);
+            // Log::alert("from userId: " . $fromUserId);
+            // Log::alert("to userId: " . $toUserId);
 
             $conversationsCount = DB::table('conversations')
                 ->where(function ($query) use ($fromUserId, $toUserId) {
@@ -119,6 +119,126 @@ class MessagesController extends Controller
                     return JSendResponse::error('Something went wrong. Please contact your project administrator for help explaining what you tried to do.');
                 }
             }
+
+        }
+    }
+
+    public function createAttachment(Request $request)
+    {
+
+        if (!$request->hasFile('attachmentFile')) {
+            Log::error("File to upload not found.");
+            $messages['message'] = 'File to upload not found.';
+            return JSendResponse::fail($messages);
+        }
+        else{
+            Log::error("File found.");
+        }
+
+        $data = $request->all();
+        $rules = [
+            // 'conversationId' => 'required',
+            // 'fromUserId' => 'required',
+            'toUserId' => 'required',
+            'message' => 'required',
+            // 'attachments' => 'required',
+            // 'sentDate' => 'required',
+        ];
+
+        $validator = Validator::make($data, $rules);
+        if ($validator->fails()) {
+            $messages['message'] = implode(",", $validator->getMessageBag()->all());
+            return JSendResponse::fail($messages);
+        } else {
+
+            if (!$request->hasFile('attachmentFile')) {
+                $messages['message'] = 'File to upload not found.';
+                return JSendResponse::fail($messages);
+            }
+
+            // $toUserId = $request->toUserId;
+            // $fromUserId = $request->user()->id;
+
+            // // Log::alert("from userId: " . $fromUserId);
+            // // Log::alert("to userId: " . $toUserId);
+
+            // $conversationsCount = DB::table('conversations')
+            //     ->where(function ($query) use ($fromUserId, $toUserId) {
+            //         $query->where('fromUserId', '=', $fromUserId)
+            //             ->where('toUserId', '=', $toUserId);
+            //     })
+            //     ->orWhere(function ($query) use ($fromUserId, $toUserId) {
+            //         $query->where('fromUserId', '=', $toUserId)
+            //             ->where('toUserId', '=', $fromUserId);
+            //     })->count();
+
+            // if ($conversationsCount > 0) {
+            //     // A conversation exists. So use the existing conversation Id
+            //     $conversations = DB::table('conversations')
+            //         ->where(function ($query) use ($fromUserId, $toUserId) {
+            //             $query->where('fromUserId', '=', $fromUserId)
+            //                 ->where('toUserId', '=', $toUserId);
+            //         })
+            //         ->orWhere(function ($query) use ($fromUserId, $toUserId) {
+            //             $query->where('fromUserId', '=', $toUserId)
+            //                 ->where('toUserId', '=', $fromUserId);
+            //         })
+            //         ->get()
+            //         ->values()
+            //         ->first();
+
+            //     $conversationId = $conversations->id;
+
+            //     try {
+            //         DB::beginTransaction();
+            //         $message = new Messages;
+            //         $message->conversationId = $conversationId;
+            //         $message->fromUserId = $request->user()->id;
+            //         $message->toUserId = $request->toUserId;
+            //         $message->message = $request->message;
+            //         $message->attachments = $request->attachments;
+            //         $message->sentDate = $request->sentDate;
+            //         $message->push();
+            //         DB::commit();
+            //         self::sendFCMnotification($request->user()->id, $request->toUserId, "Telemed", $request->message);
+            //         return JSendResponse::success();
+
+            //     } catch (Exception $exc) {
+            //         DB::rollBack();
+            //         // Log the exception
+            //         Log::emergency($exc->getMessage());
+            //         return JSendResponse::error('Something went wrong. Please contact your project administrator for help explaining what you tried to do.');
+            //     }
+
+            // } else {
+            //     // No conversation exists. So create a new conversation Id
+            //     try {
+            //         DB::beginTransaction();
+
+            //         $conversation = new Conversations;
+            //         $conversation->fromUserId = $request->user()->id;
+            //         $conversation->toUserId = $request->toUserId;
+            //         $conversation->push();
+
+            //         $conversationId = $conversation->id;
+            //         $message = new Messages;
+            //         $message->conversationId = $conversationId;
+            //         $message->fromUserId = $request->user()->id;
+            //         $message->toUserId = $request->toUserId;
+            //         $message->message = $request->message;
+            //         $message->attachments = $request->attachments;
+            //         $message->sentDate = $request->sentDate;
+            //         $message->push();
+            //         DB::commit();
+            //         return JSendResponse::success();
+
+            //     } catch (Exception $exc) {
+            //         DB::rollBack();
+            //         // Log the exception
+            //         Log::emergency($exc->getMessage());
+            //         return JSendResponse::error('Something went wrong. Please contact your project administrator for help explaining what you tried to do.');
+            //     }
+            // }
 
         }
     }
