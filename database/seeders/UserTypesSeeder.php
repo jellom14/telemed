@@ -19,20 +19,20 @@ class UserTypesSeeder extends Seeder
      */
     public function run()
     {
-        // DB::table('usertypes')->truncate();
+        // DB::table('userTypes')->truncate();
 
         // Admin - 1
-        DB::table('usertypes')->insert([
+        DB::table('userTypes')->insert([
             'userType' => 'Admin',
         ]);
 
         // // Doctor - 2
-        DB::table('usertypes')->insert([
+        DB::table('userTypes')->insert([
             'userType' => 'Doctor',
         ]);
 
         // // Patient - 3
-        DB::table('usertypes')->insert([
+        DB::table('userTypes')->insert([
             'userType' => 'Patient',
         ]);
     }
