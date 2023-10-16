@@ -76,7 +76,7 @@ class MessagesController extends Controller
                     $message->fromUserId = $request->user()->id;
                     $message->toUserId = $request->toUserId;
                     $message->message = $request->message;
-                    $message->attachments = $request->attachments;
+                    // $message->attachments = $request->attachments;
                     $message->sentDate = $request->sentDate;
                     $message->push();
                     DB::commit();
@@ -106,7 +106,7 @@ class MessagesController extends Controller
                     $message->fromUserId = $request->user()->id;
                     $message->toUserId = $request->toUserId;
                     $message->message = $request->message;
-                    $message->attachments = $request->attachments;
+                    // $message->attachments = $request->attachments;
                     $message->sentDate = $request->sentDate;
                     $message->push();
                     DB::commit();
