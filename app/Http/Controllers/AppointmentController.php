@@ -201,26 +201,26 @@ class AppointmentController extends Controller
                 ->all();
             $appointments[$idx]->symptomsModelList = $symptoms;
 
-            $drugAllergies = DB::table('drugallergiesAppointmentsMap')
-                ->join('meta_drug_allergies', 'meta_drug_allergies.id', '=', 'drugallergiesAppointmentsMap.allergyId')
-                ->where('drugallergiesAppointmentsMap.appointmentId', '=', $appointments[$idx]->id)
-                ->get(['drugallergiesAppointmentsMap.*', 'meta_drug_allergies.*'])
+            $drugAllergies = DB::table('drugAllergiesAppointmentsMap')
+                ->join('meta_drug_allergies', 'meta_drug_allergies.id', '=', 'drugAllergiesAppointmentsMap.allergyId')
+                ->where('drugAllergiesAppointmentsMap.appointmentId', '=', $appointments[$idx]->id)
+                ->get(['drugAllergiesAppointmentsMap.*', 'meta_drug_allergies.*'])
                 ->values()
                 ->all();
             $appointments[$idx]->drugAllergiesModelList = $drugAllergies;
 
-            $medicalConditions = DB::table('medicalconditionsAppointmentsMap')
-                ->join('meta_medical_conditions', 'meta_medical_conditions.id', '=', 'medicalconditionsAppointmentsMap.medicalConditionId')
-                ->where('medicalconditionsAppointmentsMap.appointmentId', '=', $appointments[$idx]->id)
-                ->get(['medicalconditionsAppointmentsMap.*', 'meta_medical_conditions.*'])
+            $medicalConditions = DB::table('medicalConditionsAppointmentsMap')
+                ->join('meta_medical_conditions', 'meta_medical_conditions.id', '=', 'medicalConditionsAppointmentsMap.medicalConditionId')
+                ->where('medicalConditionsAppointmentsMap.appointmentId', '=', $appointments[$idx]->id)
+                ->get(['medicalConditionsAppointmentsMap.*', 'meta_medical_conditions.*'])
                 ->values()
                 ->all();
             $appointments[$idx]->medicalConditionsModelList = $medicalConditions;
 
-            $famMedicalConditions = DB::table('fammedicalconditionsAppointmentsMap')
-                ->join('meta_medical_conditions', 'meta_medical_conditions.id', '=', 'fammedicalconditionsAppointmentsMap.medicalConditionId')
-                ->where('fammedicalconditionsAppointmentsMap.appointmentId', '=', $appointments[$idx]->id)
-                ->get(['fammedicalconditionsAppointmentsMap.*', 'meta_medical_conditions.*'])
+            $famMedicalConditions = DB::table('famMedicalConditionsAppointmentsMap')
+                ->join('meta_medical_conditions', 'meta_medical_conditions.id', '=', 'famMedicalConditionsAppointmentsMap.medicalConditionId')
+                ->where('famMedicalConditionsAppointmentsMap.appointmentId', '=', $appointments[$idx]->id)
+                ->get(['famMedicalConditionsAppointmentsMap.*', 'meta_medical_conditions.*'])
                 ->values()
                 ->all();
             $appointments[$idx]->famMedicalConditionsModelList = $famMedicalConditions;

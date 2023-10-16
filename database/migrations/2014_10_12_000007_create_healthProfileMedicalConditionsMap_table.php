@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('MedicalConditionsAppointmentsMap', function (Blueprint $table) {
+        Schema::create('medicalConditionsAppointmentsMap', function (Blueprint $table) {
             //for all
             $table->id();
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('MedicalConditionsAppointmentsMap');
+        Schema::dropIfExists('medicalConditionsAppointmentsMap');
     }
 };

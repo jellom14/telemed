@@ -12,7 +12,7 @@ class SymptomsAppointmentsMap extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public $table = "SymptomsAppointmentsMap";
+    public $table = "symptomsAppointmentsMap";
     protected $fillable = ['symptom'];
 
 }

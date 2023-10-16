@@ -12,7 +12,7 @@ class MedicalConditionsAppointmentsMap extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public $table = "medicalconditionsAppointmentsMap";
+    public $table = "medicalConditionsAppointmentsMap";
     protected $fillable = ['medicalCondition'];
 
 }

@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class FamMedicalConditionsAppointmentsMap extends Model
 {
     use HasFactory, SoftDeletes;
-    public $table = "famMedicalconditionsAppointmentsMap";
+    public $table = "famMedicalConditionsAppointmentsMap";
     protected $fillable = ['medicalCondition'];
 
 }
